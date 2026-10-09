@@ -1,35 +1,36 @@
 import { useTranslation } from "react-i18next";
-import { HelpCircle } from "lucide-react";
+import { ListChecks } from "lucide-react";
 
 export const HowToUse = () => {
   const { t } = useTranslation();
 
   return (
-    <section className="bg-white dark:bg-gray-800 p-6 sm:p-8 rounded-lg shadow-md mb-6 sm:mb-8 transition-colors">
-      <div className="flex items-center gap-3 mb-4">
-        <HelpCircle className="h-6 w-6 text-green-600 dark:text-green-400" />
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white">
-          {t("sections.howToUse.title")}
-        </h2>
-      </div>
-      <div className="space-y-4">
-        {[1, 2, 3].map((step) => (
-          <div key={step} className="flex gap-4">
-            <div className="flex-shrink-0 w-8 h-8 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center text-blue-600 dark:text-blue-300 font-bold text-sm">
-              {step}
-            </div>
-            <div>
-              <h3 className="font-semibold text-gray-900 dark:text-white mb-1">
+    <section className="bg-slate-50 py-14 dark:bg-slate-950 sm:py-16">
+      <div className="container-page">
+        <div className="mb-8 flex items-center gap-3">
+          <span className="icon-chip">
+            <ListChecks className="h-5 w-5" aria-hidden="true" />
+          </span>
+          <h2 className="text-2xl font-bold tracking-tight text-slate-900 dark:text-white sm:text-3xl">
+            {t("sections.howToUse.title")}
+          </h2>
+        </div>
+        <ol className="grid gap-4 md:grid-cols-3">
+          {[1, 2, 3].map((step) => (
+            <li key={step} className="card p-6">
+              <span className="mb-4 flex h-10 w-10 items-center justify-center rounded-full bg-teal-700 font-heading text-lg font-bold text-white dark:bg-teal-400 dark:text-slate-950">
+                {step}
+              </span>
+              <h3 className="mb-2 text-lg font-semibold text-slate-900 dark:text-white">
                 {t(`sections.howToUse.step${step}.title`)}
               </h3>
-              <p className="text-gray-700 dark:text-gray-300 text-sm sm:text-base">
+              <p className="leading-relaxed text-slate-600 dark:text-slate-300">
                 {t(`sections.howToUse.step${step}.description`)}
               </p>
-            </div>
-          </div>
-        ))}
+            </li>
+          ))}
+        </ol>
       </div>
     </section>
   );
 };
-

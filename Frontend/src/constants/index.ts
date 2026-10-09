@@ -14,6 +14,8 @@ export const API_ENDPOINTS = {
   GENERATE_QR: `${API_BASE_URL}/api/generate-qr`,
 } as const;
 
+export const BRAND_NAME = "QR Gratis";
+
 export const STORAGE_KEYS = {
   THEME: "theme",
   LANGUAGE: "language",

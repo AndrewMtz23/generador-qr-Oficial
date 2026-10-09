@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
 import { Footer } from "../components/layout/Footer";
 import { Hero } from "../components/layout/Hero";
+import { QRTypeTabs } from "../components/qr/QRTypeTabs";
 import { QRForm } from "../components/qr/QRForm";
 import { QRDisplay } from "../components/qr/QRDisplay";
 import { WhatIsQR } from "../components/sections/WhatIsQR";
@@ -79,35 +80,38 @@ export function GeneratorPage({ variant = "type" }: GeneratorPageProps) {
         <meta name="twitter:description" content={meta.description} />
       </Helmet>
 
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
+      <section className="bg-slate-50 py-10 dark:bg-slate-950 sm:py-14">
+        <div className="container-page">
           <Hero />
           <h2 id="home-section-heading" className="sr-only">
             {t("main.sectionTitle")}
           </h2>
 
-          <div
-            className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6 lg:gap-8"
-            aria-labelledby="home-section-heading"
-          >
-            <QRForm qrGenerator={qrGeneratorForForm} />
-            <QRDisplay qrGenerator={qrGenerator} />
+          <div className="card" role="group" aria-labelledby="home-section-heading">
+            <div className="border-b border-slate-200 p-4 dark:border-slate-800 sm:p-5">
+              <QRTypeTabs qrGenerator={qrGeneratorForForm} />
+            </div>
+            <div className="grid lg:grid-cols-[minmax(0,3fr)_minmax(0,2fr)]">
+              <div className="p-5 sm:p-6 lg:p-8">
+                <QRForm qrGenerator={qrGeneratorForForm} />
+              </div>
+              <div className="rounded-b-2xl border-t border-slate-200 bg-slate-50/70 p-5 dark:border-slate-800 dark:bg-slate-950/40 sm:p-6 lg:rounded-bl-none lg:rounded-br-2xl lg:border-l lg:border-t-0 lg:p-8">
+                <QRDisplay qrGenerator={qrGenerator} />
+              </div>
+            </div>
           </div>
-
-          <div className="mt-12 sm:mt-16 lg:mt-20">
-            <WhatIsQR />
-            <HowToUse />
-            <UseCases />
-          </div>
-
-          <Footer />
         </div>
+      </section>
 
-        <ComingSoonModal
-          isOpen={showComingSoonModal}
-          onClose={() => setShowComingSoonModal(false)}
-        />
-      </div>
+      <WhatIsQR />
+      <HowToUse />
+      <UseCases />
+      <Footer />
+
+      <ComingSoonModal
+        isOpen={showComingSoonModal}
+        onClose={() => setShowComingSoonModal(false)}
+      />
     </>
   );
 }

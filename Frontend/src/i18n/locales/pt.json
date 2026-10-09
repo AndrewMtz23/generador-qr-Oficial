@@ -5,7 +5,17 @@
     "history": "Histórico",
     "lightMode": "Modo Claro",
     "darkMode": "Modo Escuro",
-    "language": "Idioma"
+    "language": "Idioma",
+    "menuOpen": "Abrir menu",
+    "menuClose": "Fechar menu",
+    "mainNav": "Navegação principal",
+    "faq": "FAQ",
+    "nav": {
+      "url": "URL",
+      "whatsapp": "WhatsApp",
+      "wifi": "WiFi",
+      "text": "Texto"
+    }
   },
   "main": {
     "title": "Gerador de Código QR",
@@ -50,12 +60,13 @@
     "size": "Tamanho",
     "format": "Formato",
     "download": "Baixar QR",
-    "tip": "💡 Escaneie este código com qualquer leitor QR para verificar se funciona corretamente",
+    "tip": "Escaneie este código com qualquer leitor QR para verificar se funciona corretamente",
     "placeholder": "Código QR",
     "placeholderText": "Aparecerá aqui",
     "instructions": "Configure as opções e pressione \"Gerar QR\"",
     "supportCta": "Te ajudou? Me apoie",
-    "viewDonations": "Ver opções de doação"
+    "viewDonations": "Ver opções de doação",
+    "imageAlt": "Código QR gerado"
   },
   "sections": {
     "whatIsQR": {
@@ -121,7 +132,10 @@
     "faq": "Perguntas Frequentes",
     "terms": "Termos e Condições",
     "privacy": "Política de Privacidade",
-    "cookies": "Política de Cookies"
+    "cookies": "Política de Cookies",
+    "generators": "Geradores",
+    "project": "Projeto",
+    "legal": "Legal"
   },
   "errors": {
     "invalidImage": "Por favor, selecione um arquivo de imagem válido",
@@ -134,7 +148,8 @@
     "genericError": "Erro"
   },
   "alerts": {
-    "comingSoon": "Em breve"
+    "comingSoon": "Em breve",
+    "close": "Fechar"
   },
   "history": {
     "title": "Histórico de Códigos QR",
@@ -320,4 +335,3 @@
     "backToGenerator": "Voltar ao gerador"
   }
 }
-

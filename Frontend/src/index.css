@@ -3,23 +3,82 @@
 @tailwind utilities;
 
 @layer base {
-  html, body {
-    background-color: #f9fafb; /* bg-gray-50 */
-    margin: 0;
-    padding: 0;
+  html {
+    scroll-behavior: smooth;
+    @apply bg-slate-50;
   }
-  
-  html.dark, html.dark body {
-    background-color: #111827; /* bg-gray-900 */
+
+  html.dark {
+    @apply bg-slate-950;
+    color-scheme: dark;
   }
-  
+
   body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+    @apply m-0 bg-slate-50 font-sans text-base text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-heading;
+  }
+
+  /* Visible keyboard focus everywhere; form fields add their own ring on top. */
+  :focus-visible {
+    @apply outline-2 outline-offset-2 outline-teal-700 dark:outline-teal-400;
   }
 }
 
 @layer components {
+  .container-page {
+    @apply mx-auto w-full max-w-6xl px-4 sm:px-6 lg:px-8;
+  }
+
+  /* Surfaces */
+  .card {
+    @apply rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900;
+  }
+
+  .icon-chip {
+    @apply inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-teal-50 text-teal-700 dark:bg-teal-950 dark:text-teal-300;
+  }
+
+  /* Buttons: orange (btn-cta) is reserved for Generate / Download. */
+  .btn {
+    @apply inline-flex min-h-[44px] cursor-pointer items-center justify-center gap-2 rounded-lg px-5 py-2.5 text-base font-semibold transition-colors duration-200 disabled:cursor-not-allowed disabled:opacity-60;
+  }
+
+  .btn-cta {
+    @apply btn bg-orange-700 text-white hover:bg-orange-800 disabled:hover:bg-orange-700;
+  }
+
+  .btn-secondary {
+    @apply btn border-2 border-teal-700 text-teal-700 hover:bg-teal-50 dark:border-teal-400 dark:text-teal-300 dark:hover:bg-teal-950;
+  }
+
+  .btn-ghost {
+    @apply btn text-teal-700 hover:bg-teal-50 dark:text-teal-300 dark:hover:bg-teal-950;
+  }
+
+  /* Links inside prose */
+  .text-link {
+    @apply cursor-pointer font-medium text-teal-700 underline underline-offset-2 transition-colors hover:text-teal-800 dark:text-teal-300 dark:hover:text-teal-200;
+  }
+
+  /* Form fields: 16px text avoids iOS zoom; teal focus ring. */
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-slate-800 dark:text-slate-200;
+  }
+
+  .field-hint {
+    @apply mt-1.5 text-sm text-slate-600 dark:text-slate-400;
+  }
+
+  .field {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-3 py-2.5 text-base text-slate-900 transition-colors placeholder:text-slate-500 focus:border-teal-700 focus:outline-none focus:ring-2 focus:ring-teal-700/30 dark:border-slate-700 dark:bg-slate-950 dark:text-slate-100 dark:placeholder:text-slate-400 dark:focus:border-teal-400 dark:focus:ring-teal-400/30;
+  }
+
+  /* Range slider */
   .slider {
     @apply appearance-none;
     -webkit-appearance: none;
@@ -27,71 +86,34 @@
   }
 
   .slider::-webkit-slider-thumb {
-    @apply appearance-none cursor-pointer rounded-full border-2 border-white dark:border-gray-800;
+    @apply cursor-pointer appearance-none rounded-full border-2 border-white bg-teal-700 shadow dark:border-slate-900 dark:bg-teal-400;
     -webkit-appearance: none;
-    width: 18px;
-    height: 18px;
-    background: #3b82f6;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    position: relative;
-    margin-top: -8.25px;
-  }
-
-  .slider::-webkit-slider-thumb::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: white;
+    width: 20px;
+    height: 20px;
+    margin-top: -7px;
   }
 
   .slider::-moz-range-thumb {
-    @apply appearance-none cursor-pointer rounded-full border-2 border-white dark:border-gray-800;
-    -moz-appearance: none;
-    width: 18px;
-    height: 18px;
-    background: #3b82f6;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
-    border: 2px solid;
-    border-color: white;
-  }
-
-  .dark .slider::-moz-range-thumb {
-    border-color: rgb(31, 41, 55);
-  }
-
-  .slider::-moz-range-track {
-    height: 1.5px;
-    @apply bg-gray-200 dark:bg-gray-600 rounded;
-    border: none;
+    @apply cursor-pointer appearance-none rounded-full border-2 border-white bg-teal-700 shadow dark:border-slate-900 dark:bg-teal-400;
+    width: 16px;
+    height: 16px;
   }
 
   .slider::-webkit-slider-runnable-track {
-    height: 1.5px;
-    @apply bg-gray-200 dark:bg-gray-600 rounded;
-    border: none;
+    @apply rounded-full border-none bg-slate-200 dark:bg-slate-700;
+    height: 6px;
   }
 
-  input[type="range"]::-webkit-inner-spin-button,
-  input[type="range"]::-webkit-outer-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+  .slider::-moz-range-track {
+    @apply rounded-full border-none bg-slate-200 dark:bg-slate-700;
+    height: 6px;
   }
 
-  input[type="range"] {
-    -moz-appearance: textfield;
+  .slider:focus-visible::-webkit-slider-thumb {
+    @apply ring-2 ring-teal-700/40 dark:ring-teal-400/40;
   }
 
-  /* Prevenir glitch visual en inputs y textareas */
-  input[type="color"] {
-    isolation: isolate;
-    contain: layout style paint;
-  }
-
+  /* Native color picker: remove the inner swatch padding/border. */
   input[type="color"]::-webkit-color-swatch-wrapper {
     padding: 0;
     border: none;
@@ -102,12 +124,40 @@
     border-radius: 4px;
   }
 
-  /* Prevenir glitch en todos los inputs y textareas */
-  input:not([type="color"]),
-  textarea,
-  select {
-    isolation: isolate;
-    contain: layout style paint;
-    background-color: transparent;
+  /* react-international-phone: map its CSS variables to the design system. */
+  .react-international-phone-input-container {
+    --react-international-phone-height: 44px;
+    --react-international-phone-font-size: 16px;
+    --react-international-phone-border-radius: 8px;
+  }
+
+  .dark .react-international-phone-input-container {
+    --react-international-phone-background-color: #020617;
+    --react-international-phone-text-color: #f1f5f9;
+    --react-international-phone-border-color: #334155;
+    --react-international-phone-country-selector-background-color: #0f172a;
+    --react-international-phone-country-selector-background-color-hover: #1e293b;
+    --react-international-phone-country-selector-arrow-color: #94a3b8;
+    --react-international-phone-dropdown-item-background-color: #0f172a;
+    --react-international-phone-dropdown-item-text-color: #f1f5f9;
+    --react-international-phone-dropdown-item-dial-code-color: #94a3b8;
+    --react-international-phone-selected-dropdown-item-background-color: #1e293b;
+    --react-international-phone-selected-dropdown-item-text-color: #f1f5f9;
+    --react-international-phone-selected-dropdown-item-dial-code-color: #94a3b8;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

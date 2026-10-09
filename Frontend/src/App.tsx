@@ -21,11 +21,11 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
       <StaticPageSeo />
       <Header onLoginClick={handleLoginClick} />
       <main id="main-content">
-        <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center text-gray-500 dark:text-gray-400" aria-live="polite">Cargando…</div>}>
+        <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center text-slate-600 dark:text-slate-400" aria-live="polite">Cargando…</div>}>
           <Routes>
             <Route path="/" element={<GeneratorPage variant="home" />} />
             <Route path="/generador-qr/:type" element={<GeneratorPage />} />
