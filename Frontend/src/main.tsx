@@ -12,17 +12,18 @@ const GA_ID = 'G-FERLP17VV6';
 function loadGoogleAnalytics() {
   if (typeof window === 'undefined' || !import.meta.env.PROD) return;
   window.dataLayer = window.dataLayer || [];
-  function gtag(...args: unknown[]) {
-    window.dataLayer.push(args);
+  // gtag.js only processes the Arguments object; pushing a rest-params array is silently ignored.
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  function gtag(..._args: unknown[]) {
+    // eslint-disable-next-line prefer-rest-params
+    window.dataLayer.push(arguments);
   }
+  gtag('js', new Date());
+  gtag('config', GA_ID);
   const script = document.createElement('script');
   script.async = true;
   script.src = `https://www.googletagmanager.com/gtag/js?id=${GA_ID}`;
   document.head.appendChild(script);
-  script.onload = () => {
-    gtag('js', new Date());
-    gtag('config', GA_ID);
-  };
 }
 
 function AppWithAnalytics() {
