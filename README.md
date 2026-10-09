@@ -129,6 +129,10 @@ QR Gratis es gratis y seguirá siéndolo. Si te resulta útil, puedes ayudar a m
 - Propón ideas o reporta errores en [Issues](https://github.com/BigNight1/generador-qr-Oficial/issues).
 - Haz una **donación** desde [qrgratis.es/donaciones](https://www.qrgratis.es/donaciones) (PayPal, Yape, Plin o Binance Pay).
 
+## Licencia
+
+Código abierto bajo la [licencia MIT](LICENSE). Puedes usarlo, modificarlo y distribuirlo, también con fines comerciales, siempre que mantengas el aviso de copyright.
+
 ---
 
 <div align="center">
