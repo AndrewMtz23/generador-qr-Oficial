@@ -18,15 +18,13 @@
     }
   },
   "main": {
-    "title": "QR Code Generator",
-    "subtitle": "Generate QR codes for URLs, WhatsApp, WiFi and Text",
     "sectionTitle": "Create your QR code"
   },
   "form": {
     "urlLabel": "Page URL",
     "whatsappLabel": "WhatsApp Number",
     "whatsappMessage": "Message (optional)",
-    "whatsappMessagePlaceholder": "Write a message that will be sent automatically...",
+    "whatsappMessagePlaceholder": "Type the message that will appear already typed in the chat",
     "urlPlaceholder": "https://example.com",
     "whatsappPlaceholder": "1234567890",
     "wifiSSID": "Network name (SSID)",
@@ -34,6 +32,7 @@
     "wifiPassword": "Password",
     "wifiPasswordPlaceholder": "Network password",
     "wifiSecurity": "Security type",
+    "wifiNoPassword": "No password",
     "wifiHidden": "Hidden network",
     "showPassword": "Show password",
     "hidePassword": "Hide password",
@@ -67,58 +66,6 @@
     "supportCta": "Did it help? Support me",
     "viewDonations": "View donation options",
     "imageAlt": "Generated QR code"
-  },
-  "sections": {
-    "whatIsQR": {
-      "title": "What is a QR code?",
-      "description1": "A QR code (Quick Response) is a two-dimensional barcode that can store information such as URLs, phone numbers, text messages, and more. QR codes are easily scanned with any smartphone camera, making them ideal for sharing information quickly and contactlessly.",
-      "description2": "Our tool allows you to generate QR codes for free, without registration and without limits. You can create QR codes for web links, WhatsApp, WiFi, plain text, and more. All codes are generated instantly and can be customized with different sizes, colors, and output formats.",
-      "description3": "QR codes use an advanced error correction system that allows the code to be scanned correctly even if partially damaged or covered. This makes them extremely reliable for use in printed materials, advertising, and commercial applications.",
-      "description4": "With our generator, you can create professional QR codes in seconds. It supports multiple export formats (PNG, JPG, PDF, SVG) and allows you to add your custom logo to create unique codes that represent your brand."
-    },
-    "howToUse": {
-      "title": "How to use this tool?",
-      "step1": {
-        "title": "Select QR type",
-        "description": "Choose between generating a QR code for a URL or for WhatsApp. If you choose WhatsApp, you can add a message that will be sent automatically when scanning the code."
-      },
-      "step2": {
-        "title": "Enter information",
-        "description": "Enter the complete URL (for example: https://example.com) or the WhatsApp number with country code (for example: 1234567890)."
-      },
-      "step3": {
-        "title": "Generate and download",
-        "description": "Click \"Generate QR\" and wait a few seconds. Once generated, you can download the QR code in PNG format to use in your printed or digital materials."
-      }
-    },
-    "useCases": {
-      "title": "Use cases",
-      "intro": "QR codes have a wide variety of practical applications across different industries and contexts. From digital marketing to business operations, QR codes facilitate instant and efficient connections between the physical and digital worlds.",
-      "marketing": {
-        "title": "Marketing and Advertising",
-        "description": "Share links to your products, promotions, or websites on flyers, posters, and advertising materials. QR codes allow you to track engagement and convert physical visitors into digital customers. Ideal for advertising campaigns, special offers, and promotional landing pages."
-      },
-      "social": {
-        "title": "Social Media",
-        "description": "Make it easy for your followers to access your WhatsApp profile or website from your posts. QR codes eliminate the need to type long URLs and reduce friction in the connection process. Perfect for growing your audience and increasing interaction."
-      },
-      "business": {
-        "title": "Business Cards",
-        "description": "Add a QR code to your business card so contacts can easily access your information. You can link your LinkedIn profile, website, portfolio, or contact information. This modernizes your networking and facilitates information exchange."
-      },
-      "restaurant": {
-        "title": "Restaurant Menus",
-        "description": "Provide quick access to digital menus or online ordering systems using QR codes on tables. This reduces physical contact, allows real-time menu updates, and improves customer experience. Especially useful in the post-pandemic era."
-      },
-      "events": {
-        "title": "Events",
-        "description": "Share event information, registration forms, or WhatsApp groups for participants. QR codes on tickets, programs, or event materials facilitate interaction and networking. You can also use them for post-event surveys and feedback collection."
-      },
-      "support": {
-        "title": "Customer Support",
-        "description": "Offer a direct communication channel with WhatsApp so customers can easily contact you. QR codes on products, manuals, or support materials allow customers to get instant help without searching for phone numbers or URLs. Significantly improves customer satisfaction."
-      }
-    }
   },
   "footer": {
     "description": "Free tool to generate QR codes quickly and easily. No registration, no limits, no complications. Create customized QR codes for URLs, WhatsApp, WiFi, and text in seconds.",
@@ -208,7 +155,7 @@
       "lastUpdated": "Last updated",
       "section1": {
         "title": "1. Information We Collect",
-        "content": "We do not collect personally identifiable information. The QR codes you generate are processed locally in your browser and are not stored on our servers. We only store local preferences such as language and theme (dark/light mode) on your device."
+        "content": "We do not ask for personal data or an account. To create the image of the code, the content you type is sent to our server, which generates the file and sends it back to you. We do not store the content of your codes. On your device we only store local preferences such as language and theme (dark/light mode)."
       },
       "section2": {
         "title": "2. Use of Cookies",
@@ -220,7 +167,7 @@
       },
       "section4": {
         "title": "4. Third-Party Services",
-        "content": "We use third-party advertising services to display ads. These services may use cookies to personalize ads based on your interests. You can manage your cookie preferences through your browser settings."
+        "content": "We use Google Analytics to count visits and see which pages are used. This service may use cookies. We do not show ads. You can manage cookies from your browser settings."
       },
       "section5": {
         "title": "5. Security",
@@ -244,7 +191,7 @@
       },
       "section2": {
         "title": "2. Cookies We Use",
-        "content": "We use essential technical cookies for the site's functionality, such as storing your preferred language and dark/light mode. We also use third-party advertising service cookies to display relevant ads."
+        "content": "We use essential technical cookies for the site's functionality, such as storing your preferred language and dark/light mode. We also use Google Analytics cookies to measure visits. We do not use advertising cookies."
       },
       "section3": {
         "title": "3. Cookie Management",
@@ -252,7 +199,7 @@
       },
       "section4": {
         "title": "4. Third-Party Cookies",
-        "content": "Third-party advertising services use cookies to personalize ads. You can learn more about how these services use cookies by consulting their respective privacy policies."
+        "content": "Google Analytics, a Google service, uses cookies to measure visits to the site. You can learn more by reading Google's privacy policy, or block these cookies from your browser settings."
       },
       "section5": {
         "title": "5. Contact",
@@ -261,28 +208,82 @@
     }
   },
   "faq": {
-    "title": "Frequently Asked Questions",
-    "subtitle": "Find answers to the most common questions about our QR code generator",
-    "question1": "Is it free to use the QR code generator?",
-    "answer1": "Yes, our QR code generator is completely free. It requires no registration and has no limits on the number of codes you can generate.",
-    "question2": "What types of QR codes can I generate?",
-    "answer2": "You can generate QR codes for URLs, WhatsApp (with predefined message), WiFi networks (with SSID and password), and plain text. All types are fully customizable.",
-    "question3": "Can I add my logo to QR codes?",
-    "answer3": "Yes, you can add your custom logo to the center of the QR code. The logo is automatically resized to maintain code readability.",
-    "question4": "In what formats can I download QR codes?",
-    "answer4": "You can download your QR codes in multiple formats: PNG, JPG, PDF, and SVG. Each format is ideal for different uses (printing, web, documents, etc.).",
-    "question5": "Is my information stored on servers?",
-    "answer5": "No, all QR codes are generated locally in your browser. Your history is saved only on your device using localStorage. We never send your data to our servers.",
-    "question6": "Do generated QR codes have a time limit?",
-    "answer6": "No, generated QR codes do not have an expiration date. They will work indefinitely as long as the content they point to (URL, etc.) remains valid.",
-    "question7": "Can I customize the color of QR codes?",
-    "answer7": "Yes, you can choose any color for your QR codes using the color picker or entering a hexadecimal code. This allows you to create codes that match your brand.",
-    "question8": "What size QR code should I use?",
-    "answer8": "The recommended size depends on use: 200-300px for web, 500-1000px for printing, and up to 2000px for large format materials. Our generator allows you to adjust the size according to your needs.",
-    "question9": "Can I view my history of generated QR codes?",
-    "answer9": "Yes, you can access your complete history from the 'History' button in the menu. There you'll see all the codes you've generated, with the option to download them again.",
-    "question10": "Does the service work without an Internet connection?",
-    "answer10": "No, you need an Internet connection to generate QR codes, as processing is done on our servers. However, once generated, the codes work offline."
+    "title": "Frequently asked questions about QR codes",
+    "subtitle": "Clear answers about how to create, use and print QR codes for free.",
+    "groups": [
+      {
+        "title": "Use and cost",
+        "items": [
+          {
+            "q": "What types of QR codes can I create?",
+            "a": "You can create codes for [links (URL)](/generador-qr/url), [WhatsApp](/generador-qr/whatsapp), [WiFi networks](/generador-qr/wifi) and [text](/generador-qr/texto). For all of them you can choose the color and size, and add a logo. For now there are no other types, such as contact cards or calendar events."
+          },
+          {
+            "q": "Does it cost anything, or is there a limit on codes?",
+            "a": "It costs nothing and there is no limit on codes. There is no paid version either. If it helped you, you can support the project with a [voluntary donation](/donaciones)."
+          },
+          {
+            "q": "Do I need an account or to give my email?",
+            "a": "No. There is no sign-up or accounts. You come in, create the code and download it. We do not ask for your email either."
+          }
+        ]
+      },
+      {
+        "title": "How it works",
+        "items": [
+          {
+            "q": "Do QR codes expire?",
+            "a": "No. They are static: the content is stored inside the code, not on a server, so they do not expire or have a scan limit. They only stop being useful if the content stops existing, for example a website that is deleted or a WiFi password that you change."
+          },
+          {
+            "q": "Can I edit a code I already printed?",
+            "a": "No. In a static code the content is fixed in the pattern. To change it you have to create a new code. Dynamic codes can be edited, but they depend on an intermediate service, an account and, normally, a payment. We explain it in more detail on the [home page](/)."
+          },
+          {
+            "q": "Do I need internet to create or scan a code?",
+            "a": "To create it, yes, because the image is generated on our server. To scan it, no: the phone reads the code on its own. Of course, if the code leads to a website, the phone will need internet to open it."
+          }
+        ]
+      },
+      {
+        "title": "Privacy",
+        "items": [
+          {
+            "q": "Do you store the content of my codes?",
+            "a": "No. The data you type travels to our server to create the image, and the server sends it back without saving it in any database."
+          },
+          {
+            "q": "Where is my history stored?",
+            "a": "Only in your browser, on this device. We do not see it. You can check it in the [History](/history) section and delete it whenever you want. If you clear your browser data, it disappears."
+          },
+          {
+            "q": "What data does the site collect?",
+            "a": "We use Google Analytics to count visits in general, and we store your language and theme (light or dark) on your device. We do not show ads. You can see the details in the [privacy policy](/privacy)."
+          }
+        ]
+      },
+      {
+        "title": "Printing and design",
+        "items": [
+          {
+            "q": "Which format should I download the code in?",
+            "a": "There are four: PNG, JPG, SVG and PDF. Use SVG for print shops and large sizes, because it scales without losing quality. Use PNG or JPG for screens and social media. The PDF is useful to print the code on an A4 sheet."
+          },
+          {
+            "q": "What file size can I choose?",
+            "a": "From 200 to 2000 pixels. For screens, 300 to 500 is enough. For printing, choose 1000 or more, or use the SVG format."
+          },
+          {
+            "q": "What size and colors should I use so it scans well?",
+            "a": "Print the code at least 2 x 2 cm, and bigger if it will be scanned from far away. The background is always white, so choose a dark color for the dots. Light or low-contrast colors make scanning fail. Test with your phone before printing many copies."
+          },
+          {
+            "q": "Can I put my logo in the center?",
+            "a": "Yes. Turn on the logo option and upload a PNG, JPG or GIF image of up to 10 MB. The codes use the highest level of error correction, which allows a small part to be covered. Use a simple logo and check that the code reads well."
+          }
+        ]
+      }
+    ]
   },
   "about": {
     "title": "About QR Generator",
@@ -333,5 +334,608 @@
     "transparency3": "Keeping the project ad-free and without paywall",
     "thanks": "Thanks for supporting and trying the app — I hope you can share it with whoever might find it useful.",
     "backToGenerator": "Back to generator"
+  },
+  "landing": {
+    "chips": {
+      "noSignup": "No sign-up",
+      "noAds": "No ads",
+      "neverExpires": "Never expires"
+    },
+    "common": {
+      "breadcrumbLabel": "Breadcrumb",
+      "breadcrumbHome": "Home",
+      "otherTitle": "Other types of QR code",
+      "otherIntro": "If you need to share something else, try these generators. They are all free and work the same way."
+    },
+    "home": {
+      "h1": "Free QR code generator",
+      "lead": "Create a QR code for a link, WhatsApp, your WiFi network or a text in seconds. No sign-up, no ads and no expiry date.",
+      "browserRequirements": "Requires a browser with JavaScript and an internet connection",
+      "featureList": [
+        "QR codes for links, WhatsApp, WiFi and text",
+        "Download as PNG, JPG, SVG and PDF",
+        "Custom color, size (200 to 2000 pixels) and logo",
+        "No sign-up, no ads and no watermark",
+        "Static codes that never expire"
+      ],
+      "how": {
+        "title": "How it works",
+        "intro": "Creating a QR code takes less than a minute. You do not need an account or to install anything.",
+        "steps": [
+          {
+            "title": "Choose the type of code",
+            "text": "Select link (URL), WhatsApp, WiFi or text in the tabs above. Each type only shows the fields it needs."
+          },
+          {
+            "title": "Fill in the details and customize it",
+            "text": "Type the information. If you want, pick the color, the size (200 to 2000 pixels) and the file format, and add your logo in the center."
+          },
+          {
+            "title": "Generate and download",
+            "text": "Press “Generate QR”, check the preview and download the file as PNG, JPG, SVG or PDF. Before printing it, scan it with your phone to make sure it works."
+          }
+        ]
+      },
+      "types": {
+        "title": "What do you want to share?",
+        "intro": "Choose the type of code you need. Each one has its own page, with examples, tips and frequently asked questions.",
+        "cta": "Create this QR",
+        "cards": {
+          "url": {
+            "title": "Link (URL)",
+            "text": "Takes whoever scans it to a website, a PDF menu or your social media profile.",
+            "example": "Example: your restaurant menu."
+          },
+          "whatsapp": {
+            "title": "WhatsApp",
+            "text": "Opens a chat with you, with a message already typed if you prefer.",
+            "example": "Example: orders from your shop counter."
+          },
+          "wifi": {
+            "title": "WiFi",
+            "text": "Connects your guests to your network without reading out the password.",
+            "example": "Example: the network of a café or a rental."
+          },
+          "texto": {
+            "title": "Text",
+            "text": "Shows a note, some instructions or an inventory code.",
+            "example": "Example: usage steps stuck on a device."
+          }
+        }
+      },
+      "staticVsDynamic": {
+        "title": "Static vs. dynamic QR: which one fits you",
+        "intro": "There are two kinds of QR codes. They look alike, but they work differently.",
+        "static": {
+          "title": "Static QR",
+          "badge": "This is the one this tool creates",
+          "points": [
+            "The content is written inside the code.",
+            "The phone reads the content directly, without going through any server of ours.",
+            "It never expires and has no scan limit.",
+            "You do not need an account or a subscription.",
+            "It cannot be changed once printed. If the content changes, you create a new code."
+          ]
+        },
+        "dynamic": {
+          "title": "Dynamic QR",
+          "badge": "Offered by many paid services",
+          "points": [
+            "The code holds a short address. When scanned, it goes through an intermediate server that sends you to the destination.",
+            "You can change the destination without changing the printed code.",
+            "It usually includes scan statistics.",
+            "It normally requires an account and, often, a paid subscription.",
+            "If you cancel or the trial ends, the code may stop working."
+          ]
+        },
+        "choose": {
+          "title": "When to choose each one",
+          "static": "Choose a static QR if the content will not change: a WiFi network, a WhatsApp chat, a text or a website that will stay at the same address. It is the simplest option and depends on nobody.",
+          "dynamic": "Choose a dynamic QR if you will print many copies of something that will change, such as a menu you update every week, or if you need to count how many people scan it. For that you will need a service with an account, which is usually paid."
+        }
+      },
+      "compare": {
+        "title": "Why QR Gratis",
+        "intro": "Many free generators add conditions after you create the code. Here is what changes with QR Gratis. We talk about what often happens, not about every service.",
+        "caption": "Comparison between QR Gratis and many free generators",
+        "colFeature": "What matters",
+        "colUs": "QR Gratis",
+        "colOthers": "Many free generators",
+        "rows": [
+          {
+            "feature": "Account required",
+            "us": "No. You create and download without signing up.",
+            "others": "They often ask you to create an account to download or save the code."
+          },
+          {
+            "feature": "They ask for your email",
+            "us": "No. We never ask for your email.",
+            "others": "Sometimes they ask for an email before letting you download."
+          },
+          {
+            "feature": "Ads when scanning",
+            "us": "No. The code holds your content directly, with no pages in between.",
+            "others": "In some, whoever scans goes through an intermediate page that may show advertising."
+          },
+          {
+            "feature": "The code stops working after a trial",
+            "us": "No. It is a static code and does not depend on any subscription.",
+            "others": "Sometimes the code stops working when the free trial ends, especially dynamic ones."
+          },
+          {
+            "feature": "Watermark",
+            "us": "No. The file comes out clean. You can only add your own logo.",
+            "others": "Sometimes the file has a watermark or you have to pay to remove it."
+          },
+          {
+            "feature": "Changing the content after printing",
+            "us": "No. If the content changes, you create a new code.",
+            "others": "Yes, with dynamic codes, which are normally paid."
+          }
+        ],
+        "note": "This comparison is general and does not name any service. The terms of each generator can change over time."
+      },
+      "whatIs": {
+        "title": "What is a QR code?",
+        "paragraphs": [
+          "A QR code is a square of dots that stores information: a link, a phone number, a text or the details of a WiFi network. To read it, you just point your phone camera at it. On most current phones you do not need to install any app.",
+          "QR stands for “Quick Response”. It was created in 1994 by a Japanese company to track parts in a car factory. Today it is used on menus, posters, business cards and packages.",
+          "The codes from this tool use the highest level of error correction. That is why they can be read even if they get a little dirty, if part of them is damaged or if they have a logo in the center. Still, always check that it scans well before printing."
+        ]
+      },
+      "faq": {
+        "title": "Frequently asked questions",
+        "intro": "These are the most common doubts before creating a code.",
+        "more": "See all questions",
+        "items": [
+          {
+            "q": "Is it really free?",
+            "a": "Yes. Creating and downloading QR codes is free and there is no limit on the number of codes. There is no paid version and no watermark. The project is kept alive with voluntary donations, which are never required."
+          },
+          {
+            "q": "Do QR codes expire?",
+            "a": "No. They are static codes: the content is inside the code, so it does not expire or have a scan limit. A link code will only stop reaching its destination if that website disappears or changes address."
+          },
+          {
+            "q": "Do I need to sign up or give my email?",
+            "a": "No. There are no accounts or sign-up, and we do not ask for your email either. You type the details, generate the code and download it."
+          },
+          {
+            "q": "Which formats can I download the code in?",
+            "a": "PNG, JPG, SVG and PDF. To print large or send it to a print shop, SVG is best because it does not lose quality when enlarged. For screens and social media, PNG or JPG work well."
+          },
+          {
+            "q": "Can I change the content after printing the code?",
+            "a": "No. The content stays inside the code and cannot be edited. If you need to change it, create a new code and replace the printed one. If you know it will change often, a dynamic QR may suit you, although it usually requires an account and payment."
+          },
+          {
+            "q": "Do you store what I type into my codes?",
+            "a": "We do not store the content of your codes. To create the image, your data travels to our server, which generates the file and sends it back without saving it. The code history is saved only in your browser and you can delete it whenever you want."
+          },
+          {
+            "q": "Can I use the codes in my business?",
+            "a": "Yes. The terms of use allow personal and commercial use, and the codes you create are yours. You are responsible for the content you put inside them."
+          },
+          {
+            "q": "What size should I use for printing?",
+            "a": "At least about 2 x 2 cm, and bigger if it will be scanned from far away. Download a large file (for example, 1000 pixels) or an SVG so it does not look blurry when enlarged. Always test with your phone before printing many copies."
+          }
+        ]
+      }
+    },
+    "types": {
+      "url": {
+        "breadcrumb": "QR code for links (URL)",
+        "other": "Turn a website, a menu or a profile into a code.",
+        "h1": "QR code generator for links (URL)",
+        "lead": "Turn any link into a free QR code. It works for a website, a PDF menu, your social media profile or a reviews page. No sign-up, no ads and no expiry.",
+        "how": {
+          "title": "How to create a QR code for a link",
+          "steps": [
+            {
+              "title": "Copy the full link",
+              "text": "Open the page in your browser and copy the address from the top bar. It should start with https:// so the phone recognizes it as a link."
+            },
+            {
+              "title": "Paste it and customize the code",
+              "text": "Paste the address in the URL field. If you want, change the color and size or add your logo. Pick a dark color: the background is always white, so it scans better."
+            },
+            {
+              "title": "Generate, test and download",
+              "text": "Press “Generate QR” and scan it with your phone to see that it opens the right page. Then download the file as PNG, JPG, SVG or PDF."
+            }
+          ]
+        },
+        "about": {
+          "title": "What a link QR does",
+          "paragraphs": [
+            "A link QR stores a web address inside the code. When someone scans it with the camera, the phone offers to open that address in the browser. Nothing has to be typed, even if the address is long.",
+            "This code is static: the address is written in the pattern and does not go through any server of ours when scanned. That is why it does not expire or count scans. In exchange, you cannot change the destination after printing it, so check the link carefully before downloading."
+          ]
+        },
+        "useCases": {
+          "title": "What a link QR is for",
+          "intro": "These are some common uses. In all of them, the link must be a public address that will not change.",
+          "items": [
+            {
+              "title": "Restaurant menu",
+              "text": "Publish the PDF menu on a website or on a file service with a public link, and put the code on the tables. Customers open it without downloading anything."
+            },
+            {
+              "title": "Google reviews",
+              "text": "If you have a Google business profile, you can copy the link to ask for reviews and turn it into a code. Put it on the counter or on the receipt."
+            },
+            {
+              "title": "Social media",
+              "text": "Put a code on your card, in your shop window or on your packaging that leads to your Instagram, TikTok or Facebook profile."
+            },
+            {
+              "title": "Catalog or online shop",
+              "text": "Link your PDF catalog or your shop page on flyers and posters, so it can be opened from the street."
+            }
+          ]
+        },
+        "tips": {
+          "title": "Tips for a link QR",
+          "items": [
+            {
+              "title": "Use short links",
+              "text": "The longer the link, the more dots the code has and the harder it is to read. If yours is very long, use a shorter address on your own website."
+            },
+            {
+              "title": "Start with https://",
+              "text": "Always include the https:// or http:// at the start. Without it, some phones treat the content as text and not as a link."
+            },
+            {
+              "title": "Test the page on your phone",
+              "text": "Scan the code with your phone, not only from the computer. Check that the page looks good on a small screen."
+            },
+            {
+              "title": "Pick a stable address",
+              "text": "If you later move the page to another address, the printed code will stop leading to it. Think of an address that will last before you print."
+            }
+          ]
+        },
+        "faq": {
+          "title": "Questions about the link QR",
+          "items": [
+            {
+              "q": "Does a link QR code expire?",
+              "a": "No. The code has the address written inside and does not depend on our website. It will work as long as the page it points to still exists."
+            },
+            {
+              "q": "Can I change the link after printing the code?",
+              "a": "No. This generator creates static codes and the link cannot be edited. If you need another destination, create a new code. If you will change it often, you need a dynamic QR, which usually requires an account and a subscription."
+            },
+            {
+              "q": "Can I make a QR for a PDF or an image?",
+              "a": "Yes, but first you have to upload the file to the internet and copy its public link, for example from your own website or from a storage service that lets you share with a link. Then paste that link here. This generator does not host files."
+            },
+            {
+              "q": "How many times can it be scanned?",
+              "a": "As many as you want. Since the code does not go through our server, we do not count scans. If you need statistics, measure them on the destination page with your own analytics tool."
+            },
+            {
+              "q": "Can I put my logo on a link QR?",
+              "a": "Yes. Turn on the logo option and upload a PNG, JPG or GIF image of up to 10 MB. It is placed in the center of the code. Use a simple logo and scan the result to check that it reads well."
+            },
+            {
+              "q": "Does it work on iPhone and Android?",
+              "a": "Yes. iPhones and most recent Android phones read QR codes with the camera. On some older Android phones you need a reader app or Google Lens."
+            }
+          ]
+        }
+      },
+      "whatsapp": {
+        "breadcrumb": "WhatsApp QR code",
+        "other": "Opens a chat with you with a message already typed.",
+        "h1": "Free WhatsApp QR code",
+        "lead": "Create a QR code that opens a WhatsApp chat with you, with a message already typed if you want. Great for shops, small businesses and customer support. No sign-up and no expiry.",
+        "how": {
+          "title": "How to create a WhatsApp QR code",
+          "steps": [
+            {
+              "title": "Choose your country and type your number",
+              "text": "In the phone field, select your country and type your number. The country prefix is added for you, and you do not need to type the + sign or spaces."
+            },
+            {
+              "title": "Type a message (optional)",
+              "text": "If you want, add a message like “Hi, I would like to place an order”. It will appear typed in the chat when someone scans the code. That person decides whether to send it."
+            },
+            {
+              "title": "Generate, test and download",
+              "text": "Press “Generate QR” and scan it with another phone: WhatsApp should open with your number. Then download the file as PNG, JPG, SVG or PDF."
+            }
+          ]
+        },
+        "about": {
+          "title": "How a WhatsApp QR works",
+          "paragraphs": [
+            "This code stores a WhatsApp link in the format wa.me/ followed by your number. When scanned, the phone opens WhatsApp with a chat to that number. If you added a message, it appears already typed in the text box.",
+            "The other person does not have to save your number in their contacts. They only need to have WhatsApp. Your number must have an active WhatsApp account, and you will receive the message like any other chat."
+          ]
+        },
+        "useCases": {
+          "title": "Where to use a WhatsApp QR",
+          "intro": "The advantage of this code is that it removes steps: whoever scans it is already in the chat with you.",
+          "items": [
+            {
+              "title": "Your shop counter",
+              "text": "Put the code next to the register with a message like “I want to place an order”. Customers write to you without looking for your number."
+            },
+            {
+              "title": "Business card",
+              "text": "Add the code to your card so people can contact you with a single scan, without copying the phone number by hand."
+            },
+            {
+              "title": "Product packaging",
+              "text": "Stick the code on the box or the bag to handle questions, exchanges or repeat orders through WhatsApp."
+            },
+            {
+              "title": "Customer support",
+              "text": "Place it on invoices, manuals or posters in your store with a message that states the reason, for example “I need help with my order”."
+            }
+          ]
+        },
+        "tips": {
+          "title": "Tips for a WhatsApp QR",
+          "items": [
+            {
+              "title": "Test it with another phone",
+              "text": "Scan the code with a phone other than yours and check that the chat opens and that the number is the right one."
+            },
+            {
+              "title": "Short and clear message",
+              "text": "A brief message, like “Hi, I would like information about…”, encourages people to send it. Avoid long messages."
+            },
+            {
+              "title": "Use the number where you answer",
+              "text": "Enter the number you actually reply on. If you change it, you will have to create another code."
+            },
+            {
+              "title": "Explain what it is for",
+              "text": "Write a sentence next to the code, like “Message us on WhatsApp”. That way people know what happens when they scan."
+            }
+          ]
+        },
+        "faq": {
+          "title": "Questions about the WhatsApp QR",
+          "items": [
+            {
+              "q": "Do I need WhatsApp Business?",
+              "a": "No. It works with a regular WhatsApp account and also with WhatsApp Business. All it needs is for the number to be registered on WhatsApp."
+            },
+            {
+              "q": "Can I preload a message?",
+              "a": "Yes. Type the message in the optional field and it will appear already typed in the chat. The person who scans sees it and decides whether to send it: it is not sent automatically."
+            },
+            {
+              "q": "Does it work with numbers from any country?",
+              "a": "WhatsApp uses numbers in international format, so the link works for any country. The selector includes Latin American countries, Spain, Portugal and the United States, with Peru as the starting option. If your country is not listed, type the full number with its international prefix (for example, +44 for the United Kingdom) in the phone field. Always test the code before using it."
+            },
+            {
+              "q": "What happens if I change my number?",
+              "a": "The code will keep opening a chat with the old number. You will have to create a new code and replace the printed one."
+            },
+            {
+              "q": "Does the code expire or have a scan limit?",
+              "a": "No. The number and the message are inside the code. It does not expire, does not count scans and does not depend on our site."
+            },
+            {
+              "q": "Can I know how many people scanned it?",
+              "a": "No. You will see the messages you receive in your WhatsApp, as always, but we do not count scans. You cannot know how many people scanned it without them writing to you."
+            }
+          ]
+        }
+      },
+      "wifi": {
+        "breadcrumb": "WiFi QR code",
+        "other": "Connects your guests without reading out the password.",
+        "h1": "Free WiFi QR code",
+        "lead": "Create a QR code so your guests and customers can join your WiFi without typing the password. Print it, stick it near the router and you are done. No sign-up and no expiry.",
+        "how": {
+          "title": "How to create a QR code for your WiFi",
+          "steps": [
+            {
+              "title": "Type the exact network name",
+              "text": "Copy your network name (SSID) exactly as it appears on your phone, keeping upper case, lower case and symbols. If it does not match exactly, the phone will not find the network."
+            },
+            {
+              "title": "Enter the password and the security type",
+              "text": "Type the password and choose WPA/WPA2 (the usual one), WEP or no password. If your network is hidden, tick the “Hidden network” box."
+            },
+            {
+              "title": "Generate, test and download",
+              "text": "Press “Generate QR” and scan it with your phone: it should offer to join the network. Download the file as PNG, JPG, SVG or PDF and print it."
+            }
+          ]
+        },
+        "about": {
+          "title": "How a WiFi QR works",
+          "paragraphs": [
+            "This code stores your network details as text: the name, the password and the security type. When someone scans it with the camera, the phone shows a prompt to join that network, without typing anything.",
+            "The details are inside the pattern and are read on the phone itself, so you do not need internet to read the code. Whoever has the code has your password, so it is best to place it where only the people you want to connect will see it."
+          ]
+        },
+        "useCases": {
+          "title": "Where to use a WiFi QR",
+          "intro": "It is useful anywhere that, every day, someone asks you for the password.",
+          "items": [
+            {
+              "title": "Restaurant or café",
+              "text": "Put the code on the table or at the bar. Customers connect without asking the waiter for the password."
+            },
+            {
+              "title": "Airbnb or holiday rental",
+              "text": "Leave it framed in the living room or in the house guide. Your guests will have internet as soon as they arrive."
+            },
+            {
+              "title": "Office with visitors",
+              "text": "Print a code for the guest network and place it at reception or in the meeting room."
+            },
+            {
+              "title": "Your home",
+              "text": "Stick it on the fridge or near the entrance for friends and family. You will not have to read out a long password every time."
+            }
+          ]
+        },
+        "tips": {
+          "title": "Tips for a WiFi QR",
+          "items": [
+            {
+              "title": "If you change the password, create the code again",
+              "text": "The code stores the password from that moment. When you change it, the printed code will stop connecting and you will have to generate a new one and replace it."
+            },
+            {
+              "title": "Use a guest network",
+              "text": "If your router has a guest network, use that one in the code. That way your visitors do not join the network where your devices are."
+            },
+            {
+              "title": "Respect upper case and symbols",
+              "text": "The name and the password are case sensitive. A single different character means it will not connect."
+            },
+            {
+              "title": "Print it with good contrast",
+              "text": "Use a dark color, at least 3 x 3 cm. If you frame it, avoid glass with a lot of glare."
+            },
+            {
+              "title": "Avoid WEP if you can",
+              "text": "WEP is an old and weak security system. If your router allows it, use WPA2."
+            }
+          ]
+        },
+        "faq": {
+          "title": "Questions about the WiFi QR",
+          "items": [
+            {
+              "q": "Does it work on iPhone and Android?",
+              "a": "Yes, on most phones. iPhones and recent Android phones read these codes with the camera and offer to join the network. On some older Android phones you may need a reader app or Google Lens."
+            },
+            {
+              "q": "What happens if I change the WiFi password?",
+              "a": "The code will keep showing the old password and will no longer connect. Create a new one with the current password and replace the printed one."
+            },
+            {
+              "q": "Is it safe to put the password in a QR?",
+              "a": "Anyone who scans the code can use that password. It is only as safe as the place where you put it. Place it only where the people who may connect are, and if you can, use a guest network. To create the image, the data goes through our server, which does not store the content of your codes."
+            },
+            {
+              "q": "Do I need internet to scan it?",
+              "a": "Not to read the code: the phone interprets it on its own. Then it connects to your network as if you had typed the password by hand."
+            },
+            {
+              "q": "Can I make a QR for a hidden network?",
+              "a": "Yes. Tick the “Hidden network” box before generating the code and type the exact name of the network."
+            },
+            {
+              "q": "What if my network has no password?",
+              "a": "Choose “No password” as the security type. The code will only hold the network name. Keep in mind that then anyone will be able to connect."
+            }
+          ]
+        }
+      },
+      "texto": {
+        "breadcrumb": "Text QR code",
+        "other": "Store a note or some instructions in a code.",
+        "h1": "Free text QR code",
+        "lead": "Turn a text into a free QR code: some instructions, a note, a product code or a short message. Whoever scans it reads it on their phone. No sign-up and no expiry.",
+        "how": {
+          "title": "How to create a text QR code",
+          "steps": [
+            {
+              "title": "Type or paste your text",
+              "text": "Type in the text field what you want people to read when they scan. It is stored exactly as you type it."
+            },
+            {
+              "title": "Check the length and customize",
+              "text": "The more text, the more dots the code has and the harder it is to scan. Keep the text short. If you want, change the color and size or add a logo."
+            },
+            {
+              "title": "Generate, test and download",
+              "text": "Press “Generate QR”, scan it with your phone to check that the full text appears and download the file as PNG, JPG, SVG or PDF."
+            }
+          ]
+        },
+        "about": {
+          "title": "What a text QR does",
+          "paragraphs": [
+            "This code stores plain text. When scanned, the phone camera shows that text on the screen, without opening any website or app. Most readers let you copy or share it.",
+            "Because the text is inside the code, it can be read without an internet connection. That makes it useful where there is no signal, like a basement, a warehouse or a hike. Like the rest of the codes from this tool, it is static: it cannot be edited afterwards."
+          ]
+        },
+        "useCases": {
+          "title": "Where to use a text QR",
+          "intro": "It works when you want to give a short piece of information without building a website.",
+          "items": [
+            {
+              "title": "Usage instructions",
+              "text": "Stick a code on a device, a tool or a room with the basic steps. Whoever needs them reads them on their phone."
+            },
+            {
+              "title": "Notes at events",
+              "text": "Place codes with the schedule, the room rules or a thank-you message on the tables or on the badges."
+            },
+            {
+              "title": "Inventory codes",
+              "text": "Label boxes or equipment with a reference, a serial number or the location. Any phone with a QR reader can read it."
+            },
+            {
+              "title": "Messages to read offline",
+              "text": "Leave a clue in a treasure hunt or a message on a gift card. It can be read even without signal."
+            }
+          ]
+        },
+        "tips": {
+          "title": "Tips for a text QR",
+          "items": [
+            {
+              "title": "Short text, easy code",
+              "text": "With few words the code has fewer dots and scans better, even if you print it small."
+            },
+            {
+              "title": "Check before downloading",
+              "text": "Once printed, the text cannot be corrected. Reread every word carefully, especially if there are numbers or references."
+            },
+            {
+              "title": "For websites and phones, use their type",
+              "text": "If you want a website to open, use the [QR for links](/generador-qr/url). To open a chat, use the [WhatsApp QR](/generador-qr/whatsapp). The phone offers to open them directly, while with a text QR it only sees letters."
+            },
+            {
+              "title": "Take care of contrast",
+              "text": "Pick a dark color, since the background is always white, and a minimum size of 2 x 2 cm. Test with your phone before printing."
+            }
+          ]
+        },
+        "faq": {
+          "title": "Questions about the text QR",
+          "items": [
+            {
+              "q": "How much text can I put in?",
+              "a": "A code has a capacity limit, and the more text, the denser and harder to read it becomes. To make it easy to scan, use one or two sentences. If the text is too long, the code cannot be generated."
+            },
+            {
+              "q": "Can it be read without internet?",
+              "a": "Yes. The phone reads the text directly from the code, without connecting to any website. You only need internet to create the code on this page."
+            },
+            {
+              "q": "Does a text code expire?",
+              "a": "No. The text is inside the code, so it does not expire or have a scan limit."
+            },
+            {
+              "q": "Can I change the text after printing it?",
+              "a": "No. It is a static code. If the text changes, create a new code and replace the printed one."
+            },
+            {
+              "q": "What is the difference between a text QR and a URL QR?",
+              "a": "The text QR only shows letters on the screen. The URL one opens a web page when scanned. If you want a website to open, use the [QR generator for links](/generador-qr/url)."
+            },
+            {
+              "q": "Do you store the text I type?",
+              "a": "We do not store the content of your codes. The data goes through our server only to create the image. The history of this tool is saved only in your browser."
+            }
+          ]
+        }
+      }
+    }
   }
 }

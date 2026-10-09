@@ -1,9 +1,9 @@
-import { Helmet } from "react-helmet-async";
 import { useLocation } from "react-router-dom";
-import { SITE_URL, STATIC_PAGE_META } from "../../config/seo";
+import { STATIC_PAGE_META } from "../../config/seo";
+import { SeoHead } from "./SeoHead";
 
 /**
- * Baseline title, description and canonical for the non-generator public pages.
+ * Baseline title, description, canonical and social tags for the non-generator public pages.
  * Renders nothing on routes that manage their own head (home and generator pages)
  * or that are client-only.
  */
@@ -14,20 +14,5 @@ export function StaticPageSeo() {
 
   if (!meta) return null;
 
-  const canonicalUrl = `${SITE_URL}${path}`;
-
-  return (
-    <Helmet>
-      <title>{meta.title}</title>
-      <meta name="description" content={meta.description} />
-      <link rel="canonical" href={canonicalUrl} />
-      <meta property="og:title" content={meta.title} />
-      <meta property="og:description" content={meta.description} />
-      <meta property="og:url" content={canonicalUrl} />
-      <meta property="og:type" content="website" />
-      <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:title" content={meta.title} />
-      <meta name="twitter:description" content={meta.description} />
-    </Helmet>
-  );
+  return <SeoHead title={meta.title} description={meta.description} path={path} />;
 }

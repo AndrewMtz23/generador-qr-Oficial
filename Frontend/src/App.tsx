@@ -4,6 +4,7 @@ import { Header } from "./components/layout/Header";
 import { ComingSoonModal } from "./components/common/ComingSoonModal";
 import { GeneratorPage } from "./pages/GeneratorPage";
 import { StaticPageSeo } from "./components/seo/StaticPageSeo";
+import { ScrollToTop } from "./components/layout/ScrollToTop";
 
 const History = lazy(() => import("./components/history/History").then((m) => ({ default: m.History })));
 const Terms = lazy(() => import("./pages/Terms").then((m) => ({ default: m.Terms })));
@@ -22,6 +23,7 @@ function App() {
 
   return (
     <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+      <ScrollToTop />
       <StaticPageSeo />
       <Header onLoginClick={handleLoginClick} />
       <main id="main-content">

@@ -1,10 +1,27 @@
 /** Base URL del sitio (sin barra final). Usado para canonical y sitemap. */
 export const SITE_URL = "https://www.qrgratis.es";
 
-/** Nombre del proyecto para títulos (fallback). */
-export const PROJECT_NAME = "Generador QR";
+/** Nombre de la marca, usado al final de cada título. */
+export const PROJECT_NAME = "QR Gratis";
+
+/** Imagen para Open Graph y Twitter (archivo en `public/`, 1200x630). */
+export const OG_IMAGE = {
+  url: `${SITE_URL}/og-image.png`,
+  width: 1200,
+  height: 630,
+  alt: "QR Gratis: generador de códigos QR gratis, sin registro y sin caducidad",
+} as const;
+
+/** Valor de `og:locale` según el idioma activo de la interfaz. */
+export const OG_LOCALES: Record<string, string> = {
+  es: "es_ES",
+  en: "en_US",
+  pt: "pt_BR",
+};
 
 export type GeneratorRouteType = "url" | "whatsapp" | "wifi" | "texto";
+
+export const GENERATOR_ROUTE_TYPES: GeneratorRouteType[] = ["url", "whatsapp", "wifi", "texto"];
 
 /** Mapeo ruta URL → tipo interno del formulario (QRType). */
 export const ROUTE_TO_TYPE: Record<GeneratorRouteType, "url" | "whatsapp" | "wifi" | "text"> = {
@@ -22,67 +39,72 @@ export const TYPE_TO_ROUTE: Record<"url" | "whatsapp" | "wifi" | "text", Generat
   text: "texto",
 };
 
-export const GENERATOR_ROUTE_META: Record<
-  GeneratorRouteType,
-  { title: string; description: string }
-> = {
+export interface PageMeta {
+  title: string;
+  description: string;
+}
+
+/** Títulos de hasta 60 caracteres (palabra clave primero) y descripciones de 140 a 160. */
+export const GENERATOR_ROUTE_META: Record<GeneratorRouteType, PageMeta> = {
   url: {
-    title: `Generador de Código QR para URLs gratis | ${PROJECT_NAME}`,
+    title: `Generador de código QR para URL gratis | ${PROJECT_NAME}`,
     description:
-      "Crea códigos QR para cualquier enlace o URL en segundos. Personaliza tamaño, color y descarga en PNG, JPG, SVG o PDF. Gratis y sin registro.",
+      "Convierte cualquier enlace en un código QR gratis. Elige color, tamaño y logo, y descárgalo en PNG, JPG, SVG o PDF. Sin registro y sin caducidad.",
   },
   whatsapp: {
-    title: `Generador de QR para WhatsApp gratis | ${PROJECT_NAME}`,
+    title: `Código QR de WhatsApp gratis con mensaje | ${PROJECT_NAME}`,
     description:
-      "Genera un código QR que abre WhatsApp directo con tu número y mensaje. Ideal para negocios y emprendedores. Sin registro.",
+      "Crea un código QR que abre un chat de WhatsApp con tu número y un mensaje ya escrito. Gratis, sin registro y sin caducidad. Descárgalo en segundos.",
   },
   wifi: {
-    title: `Generador de QR para WiFi gratis | ${PROJECT_NAME}`,
+    title: `Código QR para WiFi gratis: comparte tu red | ${PROJECT_NAME}`,
     description:
-      "Crea un código QR para compartir tu red WiFi fácilmente. Compatible con WPA, WPA2 y WEP. Descarga gratis al instante.",
+      "Crea un código QR para que tus invitados o clientes se conecten a tu WiFi sin escribir la contraseña. Gratis, sin registro, sin anuncios y sin caducidad.",
   },
   texto: {
-    title: `Generador de QR para Texto gratis | ${PROJECT_NAME}`,
+    title: `Código QR de texto gratis | ${PROJECT_NAME}`,
     description:
-      "Convierte cualquier texto en un código QR al instante. Personaliza y descarga en múltiples formatos. 100% gratis.",
+      "Convierte un texto en un código QR gratis: notas, instrucciones o códigos de inventario. Sin registro, sin anuncios y sin caducidad. PNG, JPG, SVG o PDF.",
   },
 };
 
 /** SEO for the home page ("/"). */
-export const HOME_META: { title: string; description: string } = {
-  title: "Generador de códigos QR gratis: sin registro y sin caducidad | QR Gratis",
+export const HOME_META: PageMeta = {
+  title: `Generador de códigos QR gratis, sin registro | ${PROJECT_NAME}`,
   description:
-    "Crea códigos QR gratis para URL, WhatsApp, WiFi y texto. Sin registro, sin anuncios y sin caducidad: tu QR funciona siempre. Descarga en PNG, JPG, SVG o PDF.",
+    "Crea códigos QR gratis para enlaces, WhatsApp, WiFi y texto. Sin registro, sin anuncios y sin fecha de caducidad. Descarga en PNG, JPG, SVG o PDF.",
 };
 
 /** Baseline SEO for non-generator public pages, keyed by pathname. */
-export const STATIC_PAGE_META: Record<string, { title: string; description: string }> = {
+export const STATIC_PAGE_META: Record<string, PageMeta> = {
   "/faq": {
-    title: `Preguntas frecuentes sobre el generador de QR | ${PROJECT_NAME}`,
+    title: `Preguntas frecuentes sobre códigos QR | ${PROJECT_NAME}`,
     description:
-      "Resuelve tus dudas sobre cómo crear códigos QR gratis: formatos de descarga, logos, caducidad, privacidad y más.",
+      "Respuestas claras sobre códigos QR gratis: si caducan, qué formatos puedes descargar, qué datos guardamos y cómo imprimirlos para que se lean bien.",
   },
   "/about": {
     title: `Sobre nosotros | ${PROJECT_NAME}`,
     description:
-      "Conoce el proyecto detrás del generador de códigos QR gratuito: quién lo crea, por qué existe y cómo funciona.",
+      "Conoce QR Gratis: un generador de códigos QR de código abierto, sin registro ni anuncios. Te contamos quién lo hace, por qué existe y cómo funciona.",
   },
   "/donaciones": {
     title: `Apoya el proyecto: donaciones | ${PROJECT_NAME}`,
     description:
-      "El generador de QR es gratis y sin anuncios. Si te resulta útil, puedes apoyar el proyecto con una donación voluntaria.",
+      "QR Gratis es gratis y no tiene anuncios. Si te sirvió, puedes apoyar el proyecto con una donación voluntaria. No es obligatorio y se agradece mucho.",
   },
   "/terms": {
     title: `Términos y condiciones de uso | ${PROJECT_NAME}`,
-    description: "Condiciones de uso del generador de códigos QR gratuito.",
+    description:
+      "Condiciones de uso de QR Gratis: puedes usar el generador para fines personales y comerciales. Revisa tus responsabilidades sobre el contenido de tus códigos.",
   },
   "/privacy": {
     title: `Política de privacidad | ${PROJECT_NAME}`,
     description:
-      "Cómo tratamos tus datos al usar el generador de códigos QR: qué se procesa, qué se guarda y qué no.",
+      "Qué datos usa QR Gratis y cuáles no: no guardamos el contenido de tus códigos, tu historial queda en tu navegador y usamos Google Analytics para contar visitas.",
   },
   "/cookies": {
     title: `Política de cookies | ${PROJECT_NAME}`,
-    description: "Información sobre las cookies y el almacenamiento local que usa el generador de códigos QR.",
+    description:
+      "Qué cookies y almacenamiento local usa QR Gratis: preferencias de idioma y tema, y Google Analytics para medir visitas. Cómo bloquearlas desde tu navegador.",
   },
 };

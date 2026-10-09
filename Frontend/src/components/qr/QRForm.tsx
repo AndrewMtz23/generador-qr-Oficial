@@ -18,7 +18,7 @@ import { QR_CONFIG } from "../../constants";
 import type { UseQRGeneratorReturn } from "../../hooks/useQRGenerator";
 import type { WiFiSecurity } from "../../types";
 
-const LATAM_ISO2_CODES = [
+const SUPPORTED_ISO2_CODES = [
   "pe", // Perú
   "mx", // México
   "ar", // Argentina
@@ -39,11 +39,14 @@ const LATAM_ISO2_CODES = [
   "do", // República Dominicana
   "pr", // Puerto Rico
   "cu", // Cuba
+  "es", // España
+  "pt", // Portugal
+  "us", // Estados Unidos
 ] as const;
 
-const LATAM_COUNTRIES = defaultCountries.filter((country) => {
+const SUPPORTED_COUNTRIES = defaultCountries.filter((country) => {
   const { iso2 } = parseCountry(country);
-  return LATAM_ISO2_CODES.includes(iso2 as (typeof LATAM_ISO2_CODES)[number]);
+  return SUPPORTED_ISO2_CODES.includes(iso2 as (typeof SUPPORTED_ISO2_CODES)[number]);
 });
 
 const FIELD_ICON =
@@ -171,7 +174,7 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
             >
               <option value="WPA">WPA/WPA2</option>
               <option value="WEP">WEP</option>
-              <option value="nopass">Sin contraseña</option>
+              <option value="nopass">{t("form.wifiNoPassword")}</option>
             </select>
           </div>
           <div className="flex items-center gap-3">
@@ -217,7 +220,7 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
               <div className="rounded-lg border border-slate-300 bg-white transition-colors focus-within:border-teal-700 focus-within:ring-2 focus-within:ring-teal-700/30 dark:border-slate-700 dark:bg-slate-950 dark:focus-within:border-teal-400 dark:focus-within:ring-teal-400/30">
                 <PhoneInput
                   defaultCountry="pe"
-                  countries={LATAM_COUNTRIES}
+                  countries={SUPPORTED_COUNTRIES}
                   value={whatsappPhone}
                   onChange={(phone) => setWhatsappPhone(phone)}
                   placeholder={t("form.whatsappPlaceholder")}
