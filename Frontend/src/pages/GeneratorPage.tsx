@@ -2,7 +2,6 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { useTranslation } from "react-i18next";
-import { Header } from "../components/layout/Header";
 import { Footer } from "../components/layout/Footer";
 import { Hero } from "../components/layout/Hero";
 import { QRForm } from "../components/qr/QRForm";
@@ -17,20 +16,29 @@ import {
   ROUTE_TO_TYPE,
   TYPE_TO_ROUTE,
   GENERATOR_ROUTE_META,
+  HOME_META,
   type GeneratorRouteType,
 } from "../config/seo";
 import type { QRType } from "../types";
 
 const VALID_ROUTE_TYPES: GeneratorRouteType[] = ["url", "whatsapp", "wifi", "texto"];
 
-export function GeneratorPage() {
+interface GeneratorPageProps {
+  /** "home" renders the generator at "/" (url preset, canonical "/"); "type" uses the :type route param. */
+  variant?: "home" | "type";
+}
+
+export function GeneratorPage({ variant = "type" }: GeneratorPageProps) {
+  const isHome = variant === "home";
   const { t } = useTranslation();
   const { type: routeType } = useParams<{ type: string }>();
   const navigate = useNavigate();
   const [showComingSoonModal, setShowComingSoonModal] = useState(false);
 
-  const isValidRoute = routeType && VALID_ROUTE_TYPES.includes(routeType as GeneratorRouteType);
-  const resolvedRouteType = isValidRoute ? (routeType as GeneratorRouteType) : "url";
+  const isValidRoute =
+    isHome || (!!routeType && VALID_ROUTE_TYPES.includes(routeType as GeneratorRouteType));
+  const resolvedRouteType: GeneratorRouteType =
+    !isHome && isValidRoute ? (routeType as GeneratorRouteType) : "url";
   const internalType = ROUTE_TO_TYPE[resolvedRouteType];
 
   const qrGenerator = useQRGenerator();
@@ -49,8 +57,8 @@ export function GeneratorPage() {
     setType: setTypeViaNavigate,
   };
 
-  const meta = GENERATOR_ROUTE_META[resolvedRouteType];
-  const canonicalUrl = `${SITE_URL}/generador-qr/${resolvedRouteType}`;
+  const meta = isHome ? HOME_META : GENERATOR_ROUTE_META[resolvedRouteType];
+  const canonicalUrl = isHome ? `${SITE_URL}/` : `${SITE_URL}/generador-qr/${resolvedRouteType}`;
 
   if (!isValidRoute) {
     return <Navigate to="/generador-qr/url" replace />;

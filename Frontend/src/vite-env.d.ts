@@ -5,3 +5,5 @@ declare global {
     dataLayer: unknown[];
   }
 }
+
+export {};
