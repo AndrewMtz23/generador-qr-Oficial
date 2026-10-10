@@ -1,10 +1,10 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import type { QRType, OutputFormat, WiFiSecurity } from "../types";
 import { QR_CONFIG } from "../constants";
-import { QRService } from "../services/qrService";
+import { downloadQr, generateQr, type QrResult } from "../lib/qr";
 import { fileToBase64, isValidImageFile, isValidFileSize } from "../utils/fileUtils";
-import { generateFinalUrl, downloadImage } from "../utils/qrUtils";
+import { generateFinalUrl } from "../utils/qrUtils";
 import { saveQRToHistory } from "../utils/historyUtils";
 
 export interface UseQRGeneratorReturn {
@@ -71,6 +71,8 @@ export const useQRGenerator = (): UseQRGeneratorReturn => {
   const [qrCodeImage, setQrCodeImage] = useState<string>("");
   const [selectedSize, setSelectedSize] = useState<number>(QR_CONFIG.DEFAULT_SIZE);
   const [loading, setLoading] = useState<boolean>(false);
+  // Latest generated code: downloads re-render it in whichever format is selected.
+  const lastResult = useRef<QrResult | null>(null);
 
   const handleLogoChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -133,42 +135,39 @@ export const useQRGenerator = (): UseQRGeneratorReturn => {
           : undefined,
         type === "text" ? textContent : undefined
       );
-      let logoBase64 = null;
+      const logoDataUrl = enableLogo && logoFile ? await fileToBase64(logoFile) : null;
 
-      if (enableLogo && logoFile) {
-        logoBase64 = await fileToBase64(logoFile);
-      }
-
-      const response = await QRService.generateQR({
-        url: finalUrl,
-        size: qrSize,
-        logo: logoBase64,
-        format: outputFormat,
+      const result = await generateQr({
+        content: finalUrl,
+        sizePx: qrSize,
         color: qrColor,
+        logoDataUrl,
+        format: outputFormat,
       });
 
-      setQrCodeImage(response.qrCode);
-      const finalSize = response.size ?? qrSize;
-      setSelectedSize(finalSize);
-      
+      lastResult.current = result;
+      setQrCodeImage(result.previewDataUrl);
+      setSelectedSize(result.sizePx);
+
       // Guardar en el historial
-      saveQRToHistory(response.qrCode, finalUrl, outputFormat, finalSize);
-      
-      if (response.warning) {
-        alert(response.warning);
+      saveQRToHistory(result.previewDataUrl, finalUrl, outputFormat, result.sizePx);
+
+      if (result.logoFailed) {
+        alert(t("errors.logoFailed"));
       }
     } catch (error) {
       console.error("Error al generar el QR:", error);
-      alert(t("errors.generateError"));
+      const tooLong = error instanceof Error && /too big|cannot contain/i.test(error.message);
+      alert(t(tooLong ? "errors.contentTooLong" : "errors.generateError"));
     } finally {
       setLoading(false);
     }
   };
 
   const handleDownloadQR = async () => {
-    if (!qrCodeImage) return;
+    if (!lastResult.current) return;
     try {
-      await downloadImage(qrCodeImage, "qrcode", outputFormat);
+      await downloadQr(lastResult.current, outputFormat, "qrcode");
     } catch (error) {
       console.error("Error al descargar:", error);
       alert(t("errors.generateError"));

@@ -92,6 +92,8 @@
     "wifiSSIDRequired": "Please enter the WiFi network name",
     "textRequired": "Please enter some text",
     "generateError": "There was a problem generating the QR code",
+    "contentTooLong": "The content is too long to fit in a QR code. Shorten it and try again.",
+    "logoFailed": "The logo could not be used, so the code was created without it.",
     "genericError": "Error"
   },
   "alerts": {
@@ -155,7 +157,7 @@
       "lastUpdated": "Last updated",
       "section1": {
         "title": "1. Information We Collect",
-        "content": "We do not ask for personal data or an account. To create the image of the code, the content you type is sent to our server, which generates the file and sends it back to you. We do not store the content of your codes. On your device we only store local preferences such as language and theme (dark/light mode)."
+        "content": "We do not ask for personal data or an account. The code is created on your device, inside your browser: the content you type and the logo you upload are not sent to any server and we do not store them. Google Analytics counts page visits, but it does not receive the content of your codes. On your device we only store local preferences such as language and theme (dark/light mode)."
       },
       "section2": {
         "title": "2. Use of Cookies",
@@ -241,7 +243,7 @@
           },
           {
             "q": "Do I need internet to create or scan a code?",
-            "a": "To create it, yes, because the image is generated on our server. To scan it, no: the phone reads the code on its own. Of course, if the code leads to a website, the phone will need internet to open it."
+            "a": "You need internet to load this page. After that, the code is created on your device, without sending what you type to any server. You do not need internet to scan it: the phone reads the code on its own. Of course, if the code leads to a website, the phone will need internet to open it."
           }
         ]
       },
@@ -250,7 +252,7 @@
         "items": [
           {
             "q": "Do you store the content of my codes?",
-            "a": "No. The data you type travels to our server to create the image, and the server sends it back without saving it in any database."
+            "a": "No. The code is created on your device, so what you type is not sent to any server and we never see it. Google Analytics counts page visits, but it does not receive the content of your codes."
           },
           {
             "q": "Where is my history stored?",
@@ -350,7 +352,7 @@
     "home": {
       "h1": "Free QR code generator",
       "lead": "Create a QR code for a link, WhatsApp, your WiFi network or a text in seconds. No sign-up, no ads and no expiry date.",
-      "browserRequirements": "Requires a browser with JavaScript and an internet connection",
+      "browserRequirements": "Requires a browser with JavaScript and an internet connection to load the page",
       "featureList": [
         "QR codes for links, WhatsApp, WiFi and text",
         "Download as PNG, JPG, SVG and PDF",
@@ -411,6 +413,7 @@
           "badge": "This is the one this tool creates",
           "points": [
             "The content is written inside the code.",
+            "The code is created on your device: what you type is not sent to any server.",
             "The phone reads the content directly, without going through any server of ours.",
             "It never expires and has no scan limit.",
             "You do not need an account or a subscription.",
@@ -442,6 +445,11 @@
         "colUs": "QR Gratis",
         "colOthers": "Many free generators",
         "rows": [
+          {
+            "feature": "Where the code is created",
+            "us": "On your device, inside the browser. What you type is not sent to any server.",
+            "others": "Some create it on their own server, so what you type travels to it."
+          },
           {
             "feature": "Account required",
             "us": "No. You create and download without signing up.",
@@ -510,7 +518,7 @@
           },
           {
             "q": "Do you store what I type into my codes?",
-            "a": "We do not store the content of your codes. To create the image, your data travels to our server, which generates the file and sends it back without saving it. The code history is saved only in your browser and you can delete it whenever you want."
+            "a": "No. The code is created on your device: what you type is not sent to any server. Google Analytics counts page visits, but it does not receive the content of your codes. The history is saved only in your browser and you can delete it whenever you want."
           },
           {
             "q": "Can I use the codes in my business?",
@@ -817,7 +825,7 @@
             },
             {
               "q": "Is it safe to put the password in a QR?",
-              "a": "Anyone who scans the code can use that password. It is only as safe as the place where you put it. Place it only where the people who may connect are, and if you can, use a guest network. To create the image, the data goes through our server, which does not store the content of your codes."
+              "a": "Anyone who scans the code can use that password. It is only as safe as the place where you put it. Place it only where the people who may connect are, and if you can, use a guest network. The code is created on your device: the password is not sent to any server."
             },
             {
               "q": "Do I need internet to scan it?",
@@ -915,7 +923,7 @@
             },
             {
               "q": "Can it be read without internet?",
-              "a": "Yes. The phone reads the text directly from the code, without connecting to any website. You only need internet to create the code on this page."
+              "a": "Yes. The phone reads the text directly from the code, without connecting to any website. You only need internet to load this page: the code is created on your device."
             },
             {
               "q": "Does a text code expire?",
@@ -931,7 +939,7 @@
             },
             {
               "q": "Do you store the text I type?",
-              "a": "We do not store the content of your codes. The data goes through our server only to create the image. The history of this tool is saved only in your browser."
+              "a": "No. The code is created on your device and the text is not sent to any server. The history of this tool is saved only in your browser."
             }
           ]
         }

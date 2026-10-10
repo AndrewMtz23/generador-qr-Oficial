@@ -18,19 +18,3 @@ export interface QRFormData {
   outputFormat: OutputFormat;
   qrColor: string;
 }
-
-export interface QRGenerateRequest {
-  url: string;
-  size: number;
-  logo: string | null;
-  format: OutputFormat;
-  color: string;
-}
-
-export interface QRGenerateResponse {
-  qrCode: string;
-  size?: number;
-  warning?: string;
-  error?: string;
-}
-

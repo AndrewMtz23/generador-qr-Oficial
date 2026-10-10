@@ -92,6 +92,8 @@
     "wifiSSIDRequired": "Por favor, ingresa el nombre de la red WiFi",
     "textRequired": "Por favor, ingresa un texto",
     "generateError": "Hubo un problema al generar el código QR",
+    "contentTooLong": "El contenido es demasiado largo para caber en un código QR. Acórtalo e inténtalo de nuevo.",
+    "logoFailed": "No se pudo usar el logo, así que el código se creó sin él.",
     "genericError": "Error"
   },
   "alerts": {
@@ -155,7 +157,7 @@
       "lastUpdated": "Última actualización",
       "section1": {
         "title": "1. Información que Recopilamos",
-        "content": "No te pedimos datos personales ni una cuenta. Para crear la imagen del código, el contenido que escribes se envía a nuestro servidor, que genera el archivo y te lo devuelve. No guardamos el contenido de tus códigos. En tu dispositivo solo guardamos preferencias locales como el idioma y el tema (modo oscuro/claro)."
+        "content": "No te pedimos datos personales ni una cuenta. El código se crea en tu dispositivo, dentro de tu navegador: el contenido que escribes y el logo que subes no se envían a ningún servidor ni los guardamos. Google Analytics cuenta las visitas a las páginas, pero no recibe el contenido de tus códigos. En tu dispositivo solo guardamos preferencias locales como el idioma y el tema (modo oscuro/claro)."
       },
       "section2": {
         "title": "2. Uso de Cookies",
@@ -241,7 +243,7 @@
           },
           {
             "q": "¿Necesito internet para crear o escanear un código?",
-            "a": "Para crearlo sí, porque la imagen se genera en nuestro servidor. Para escanearlo no: el móvil lee el código por sí solo. Eso sí, si el código lleva a una web, el móvil necesitará internet para abrirla."
+            "a": "Necesitas internet para cargar esta página. Después, el código se crea en tu dispositivo, sin enviar lo que escribes a ningún servidor. Para escanearlo no hace falta internet: el móvil lee el código por sí solo. Eso sí, si el código lleva a una web, el móvil necesitará internet para abrirla."
           }
         ]
       },
@@ -250,7 +252,7 @@
         "items": [
           {
             "q": "¿Guardan el contenido de mis códigos?",
-            "a": "No. Los datos que escribes viajan a nuestro servidor para crear la imagen, y el servidor te la devuelve sin guardarla en ninguna base de datos."
+            "a": "No. El código se crea en tu dispositivo, así que lo que escribes no se envía a ningún servidor y nosotros no lo vemos. Google Analytics cuenta las visitas a la página, pero no recibe el contenido de tus códigos."
           },
           {
             "q": "¿Dónde se guarda mi historial?",
@@ -350,7 +352,7 @@
     "home": {
       "h1": "Generador de códigos QR gratis",
       "lead": "Crea un código QR para un enlace, WhatsApp, tu red WiFi o un texto en segundos. Sin registro, sin anuncios y sin fecha de caducidad.",
-      "browserRequirements": "Requiere un navegador con JavaScript y conexión a internet",
+      "browserRequirements": "Requiere un navegador con JavaScript y conexión a internet para cargar la página",
       "featureList": [
         "Códigos QR para enlaces, WhatsApp, WiFi y texto",
         "Descarga en PNG, JPG, SVG y PDF",
@@ -411,6 +413,7 @@
           "badge": "Es el que crea esta herramienta",
           "points": [
             "El contenido va escrito dentro del código.",
+            "El código se crea en tu dispositivo: lo que escribes no se envía a ningún servidor.",
             "El móvil lee el contenido directamente, sin pasar por ningún servidor nuestro.",
             "No caduca y no tiene límite de escaneos.",
             "No necesitas cuenta ni suscripción.",
@@ -442,6 +445,11 @@
         "colUs": "QR Gratis",
         "colOthers": "Muchos generadores gratuitos",
         "rows": [
+          {
+            "feature": "Dónde se crea el código",
+            "us": "En tu dispositivo, dentro del navegador. Lo que escribes no se envía a ningún servidor.",
+            "others": "Algunos lo crean en su servidor, así que lo que escribes viaja hasta él."
+          },
           {
             "feature": "Cuenta obligatoria",
             "us": "No. Creas y descargas sin registrarte.",
@@ -510,7 +518,7 @@
           },
           {
             "q": "¿Guardan lo que escribo en mis códigos?",
-            "a": "No guardamos el contenido de tus códigos. Para crear la imagen, tus datos viajan a nuestro servidor, que genera el archivo y te lo devuelve sin guardarlo. El historial de códigos se guarda solo en tu navegador y puedes borrarlo cuando quieras."
+            "a": "No. El código se crea en tu dispositivo: lo que escribes no se envía a ningún servidor. Google Analytics cuenta las visitas a la página, pero no recibe el contenido de tus códigos. El historial se guarda solo en tu navegador y puedes borrarlo cuando quieras."
           },
           {
             "q": "¿Puedo usar los códigos en mi negocio?",
@@ -817,7 +825,7 @@
             },
             {
               "q": "¿Es seguro poner la contraseña en un QR?",
-              "a": "Cualquiera que escanee el código podrá usar esa contraseña. Es tan seguro como el lugar donde lo pongas. Colócalo solo donde estén las personas que pueden conectarse y, si puedes, usa una red de invitados. Para crear la imagen, los datos pasan por nuestro servidor, que no guarda el contenido de tus códigos."
+              "a": "Cualquiera que escanee el código podrá usar esa contraseña. Es tan seguro como el lugar donde lo pongas. Colócalo solo donde estén las personas que pueden conectarse y, si puedes, usa una red de invitados. El código se crea en tu dispositivo: la contraseña no se envía a ningún servidor."
             },
             {
               "q": "¿Hace falta internet para escanearlo?",
@@ -915,7 +923,7 @@
             },
             {
               "q": "¿Se puede leer sin internet?",
-              "a": "Sí. El móvil lee el texto directamente del código, sin conectarse a ninguna web. Solo necesitas internet para crear el código en esta página."
+              "a": "Sí. El móvil lee el texto directamente del código, sin conectarse a ninguna web. Solo necesitas internet para cargar esta página: el código se crea en tu dispositivo."
             },
             {
               "q": "¿El código de texto caduca?",
@@ -931,7 +939,7 @@
             },
             {
               "q": "¿Guardan el texto que escribo?",
-              "a": "No guardamos el contenido de tus códigos. Los datos pasan por nuestro servidor solo para crear la imagen. El historial de esta herramienta se guarda únicamente en tu navegador."
+              "a": "No. El código se crea en tu dispositivo y el texto no se envía a ningún servidor. El historial de esta herramienta se guarda únicamente en tu navegador."
             }
           ]
         }

@@ -7,13 +7,6 @@ export const QR_CONFIG = {
   MAX_LOGO_SIZE: 10 * 1024 * 1024, // 10MB
 } as const;
 
-// URL del API: usa variable de entorno en producción, localhost en desarrollo
-const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:3800";
-
-export const API_ENDPOINTS = {
-  GENERATE_QR: `${API_BASE_URL}/api/generate-qr`,
-} as const;
-
 export const BRAND_NAME = "QR Gratis";
 
 export const STORAGE_KEYS = {

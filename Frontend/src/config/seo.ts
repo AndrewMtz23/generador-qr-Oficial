@@ -100,7 +100,7 @@ export const STATIC_PAGE_META: Record<string, PageMeta> = {
   "/privacy": {
     title: `Política de privacidad | ${PROJECT_NAME}`,
     description:
-      "Qué datos usa QR Gratis y cuáles no: no guardamos el contenido de tus códigos, tu historial queda en tu navegador y usamos Google Analytics para contar visitas.",
+      "Qué datos usa QR Gratis y cuáles no: el código se crea en tu dispositivo y su contenido no se envía a ningún servidor, tu historial queda en tu navegador y Google Analytics solo cuenta visitas.",
   },
   "/cookies": {
     title: `Política de cookies | ${PROJECT_NAME}`,
