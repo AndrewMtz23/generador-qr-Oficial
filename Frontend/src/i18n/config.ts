@@ -4,6 +4,16 @@ import es from './locales/es.json';
 import en from './locales/en.json';
 import pt from './locales/pt.json';
 
+// Guarded so the module can be imported during build-time prerender (no localStorage in Node).
+function getInitialLanguage(): string {
+  if (typeof window === 'undefined') return 'es';
+  try {
+    return window.localStorage.getItem('language') || 'es';
+  } catch {
+    return 'es';
+  }
+}
+
 i18n
   .use(initReactI18next)
   .init({
@@ -18,7 +28,7 @@ i18n
         translation: pt,
       },
     },
-    lng: localStorage.getItem('language') || 'es',
+    lng: getInitialLanguage(),
     fallbackLng: 'es',
     interpolation: {
       escapeValue: false,

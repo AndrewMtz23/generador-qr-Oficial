@@ -1,8 +1,10 @@
 import { useState, lazy, Suspense } from "react";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import { Header } from "./components/layout/Header";
 import { ComingSoonModal } from "./components/common/ComingSoonModal";
 import { GeneratorPage } from "./pages/GeneratorPage";
+import { StaticPageSeo } from "./components/seo/StaticPageSeo";
+import { ScrollToTop } from "./components/layout/ScrollToTop";
 
 const History = lazy(() => import("./components/history/History").then((m) => ({ default: m.History })));
 const Terms = lazy(() => import("./pages/Terms").then((m) => ({ default: m.Terms })));
@@ -20,12 +22,14 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 transition-colors">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950">
+      <ScrollToTop />
+      <StaticPageSeo />
       <Header onLoginClick={handleLoginClick} />
       <main id="main-content">
-        <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center text-gray-500 dark:text-gray-400" aria-live="polite">Cargando…</div>}>
+        <Suspense fallback={<div className="min-h-[50vh] flex items-center justify-center text-slate-600 dark:text-slate-400" aria-live="polite">Cargando…</div>}>
           <Routes>
-            <Route path="/" element={<Navigate to="/generador-qr/url" replace />} />
+            <Route path="/" element={<GeneratorPage variant="home" />} />
             <Route path="/generador-qr/:type" element={<GeneratorPage />} />
             <Route path="/history" element={<History />} />
             <Route path="/terms" element={<Terms />} />

@@ -2,12 +2,13 @@ import { useTranslation } from "react-i18next";
 import { useState } from "react";
 import {
   Link,
-  MessageCircle,
   Image as ImageIcon,
   Wifi,
   Eye,
   EyeOff,
   FileText,
+  Loader2,
+  Smartphone,
 } from "lucide-react";
 import {
   PhoneInput,
@@ -15,10 +16,12 @@ import {
   parseCountry,
 } from "react-international-phone";
 import { QR_CONFIG } from "../../constants";
+import { getQrTypeById } from "../../config/qrTypes";
+import { TypeFields } from "./TypeFields";
 import type { UseQRGeneratorReturn } from "../../hooks/useQRGenerator";
 import type { WiFiSecurity } from "../../types";
 
-const LATAM_ISO2_CODES = [
+const SUPPORTED_ISO2_CODES = [
   "pe", // Perú
   "mx", // México
   "ar", // Argentina
@@ -39,12 +42,21 @@ const LATAM_ISO2_CODES = [
   "do", // República Dominicana
   "pr", // Puerto Rico
   "cu", // Cuba
+  "es", // España
+  "pt", // Portugal
+  "us", // Estados Unidos
 ] as const;
 
-const LATAM_COUNTRIES = defaultCountries.filter((country) => {
+const SUPPORTED_COUNTRIES = defaultCountries.filter((country) => {
   const { iso2 } = parseCountry(country);
-  return LATAM_ISO2_CODES.includes(iso2 as (typeof LATAM_ISO2_CODES)[number]);
+  return SUPPORTED_ISO2_CODES.includes(iso2 as (typeof SUPPORTED_ISO2_CODES)[number]);
 });
+
+const FIELD_ICON =
+  "pointer-events-none absolute left-3 h-5 w-5 text-slate-500 dark:text-slate-400";
+
+const CHECKBOX =
+  "h-5 w-5 cursor-pointer rounded border-slate-300 text-teal-700 focus:ring-teal-700 dark:border-slate-600 dark:bg-slate-950 dark:text-teal-400";
 
 interface QRFormProps {
   qrGenerator: UseQRGeneratorReturn;
@@ -70,8 +82,10 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
     setWifiHidden,
     textContent,
     setTextContent,
+    fieldValues,
+    setFieldValue,
+    fieldErrors,
     type,
-    setType,
     qrSize,
     setQrSize,
     enableLogo,
@@ -86,230 +100,183 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
     generateQRCode,
   } = qrGenerator;
 
-  return (
-    <div className="bg-white dark:bg-gray-800 p-4 sm:p-5 lg:p-6 rounded-lg shadow-md transition-colors">
-      <div className="space-y-4">
-        {/* Tipo de QR */}
-        <div className="flex flex-wrap gap-2 sm:gap-4 mb-4">
-          <button
-            onClick={() => {
-              // Al volver a URL desde WhatsApp limpiamos solo el teléfono de WhatsApp
-              if (type === "whatsapp") {
-                setWhatsappPhone("");
-              }
-              setType("url");
-            }}
-            className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base flex-1 sm:flex-none justify-center ${
-              type === "url"
-                ? "bg-blue-600 text-white"
-                : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
-            }`}
-          >
-            <Link className="h-4 w-4 sm:h-5 sm:w-5" />
-            <span>URL</span>
-          </button>
-          <button
-            onClick={() => setType("whatsapp")}
-            className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base flex-1 sm:flex-none justify-center ${
-              type === "whatsapp"
-                ? "bg-green-600 text-white"
-                : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
-            }`}
-          >
-            <MessageCircle className="h-4 w-4 sm:h-5 sm:w-5" />
-            <span>WhatsApp</span>
-          </button>
-          <button
-            onClick={() => setType("wifi")}
-            className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base flex-1 sm:flex-none justify-center ${
-              type === "wifi"
-                ? "bg-purple-600 text-white"
-                : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
-            }`}
-          >
-            <Wifi className="h-4 w-4 sm:h-5 sm:w-5" />
-            <span>WiFi</span>
-          </button>
-          <button
-            onClick={() => setType("text")}
-            className={`flex items-center gap-1 sm:gap-2 px-3 sm:px-4 py-2 rounded-md text-sm sm:text-base flex-1 sm:flex-none justify-center ${
-              type === "text"
-                ? "bg-orange-600 text-white"
-                : "bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300"
-            }`}
-          >
-            <FileText className="h-4 w-4 sm:h-5 sm:w-5" />
-            <span>{t("form.text")}</span>
-          </button>
-        </div>
+  const typeDefinition = getQrTypeById(type);
 
-        {/* Campos según el tipo */}
-        {type === "text" ? (
-          <>
-            <div>
-              <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                {t("form.textLabel")}
-              </label>
-              <div className="relative">
-                <FileText className="absolute left-3 top-3 text-gray-400 dark:text-gray-500 h-4 w-4 sm:h-5 sm:w-5 z-10 pointer-events-none" />
-                <textarea
-                  value={textContent}
-                  onChange={(e) => setTextContent(e.target.value)}
-                  placeholder={t("form.textPlaceholder")}
-                  className="pl-9 sm:pl-10 w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 text-sm sm:text-base border"
-                  rows={4}
-                />
-              </div>
-              <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                {t("form.textHint")}
-              </p>
+  return (
+    <div className="space-y-5">
+      {/* Fields by QR type */}
+      {typeDefinition.form ? (
+        <TypeFields
+          slug={typeDefinition.slug}
+          typeId={typeDefinition.id}
+          form={typeDefinition.form}
+          values={fieldValues[typeDefinition.id] ?? {}}
+          errors={fieldErrors}
+          setFieldValue={setFieldValue}
+        />
+      ) : type === "text" ? (
+        <div>
+          <label htmlFor="qr-text" className="field-label">
+            {t("form.textLabel")}
+          </label>
+          <div className="relative">
+            <FileText className={`${FIELD_ICON} top-3.5`} aria-hidden="true" />
+            <textarea
+              id="qr-text"
+              value={textContent}
+              onChange={(e) => setTextContent(e.target.value)}
+              placeholder={t("form.textPlaceholder")}
+              className="field pl-10"
+              rows={4}
+            />
+          </div>
+          <p className="field-hint">{t("form.textHint")}</p>
+        </div>
+      ) : type === "wifi" ? (
+        <div className="space-y-5">
+          <div>
+            <label htmlFor="qr-wifi-ssid" className="field-label">
+              {t("form.wifiSSID")}
+            </label>
+            <div className="relative">
+              <Wifi className={`${FIELD_ICON} top-1/2 -translate-y-1/2`} aria-hidden="true" />
+              <input
+                id="qr-wifi-ssid"
+                type="text"
+                value={wifiSSID}
+                onChange={(e) => setWifiSSID(e.target.value)}
+                placeholder={t("form.wifiSSIDPlaceholder")}
+                className="field pl-10"
+              />
             </div>
-          </>
-        ) : type === "wifi" ? (
-          <>
-            <div className="space-y-4">
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  {t("form.wifiSSID")}
-                </label>
-                <div className="relative">
-                  <Wifi className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4 sm:h-5 sm:w-5 z-10 pointer-events-none" />
-                  <input
-                    type="text"
-                    value={wifiSSID}
-                    onChange={(e) => setWifiSSID(e.target.value)}
-                    placeholder={t("form.wifiSSIDPlaceholder")}
-                    className="pl-9 sm:pl-10 w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 text-sm sm:text-base border"
-                  />
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  {t("form.wifiPassword")}
-                </label>
-                <div className="relative">
-                  <input
-                    type={showPassword ? "text" : "password"}
-                    value={wifiPassword}
-                    onChange={(e) => setWifiPassword(e.target.value)}
-                    placeholder={t("form.wifiPasswordPlaceholder")}
-                    className="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 pr-10 text-sm sm:text-base border"
-                  />
-                  <button
-                    type="button"
-                    onClick={() => setShowPassword(!showPassword)}
-                    className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 hover:text-gray-600 dark:hover:text-gray-300 focus:outline-none"
-                    aria-label={
-                      showPassword
-                        ? t("form.hidePassword")
-                        : t("form.showPassword")
-                    }
-                  >
-                    {showPassword ? (
-                      <EyeOff className="h-4 w-4 sm:h-5 sm:w-5" />
-                    ) : (
-                      <Eye className="h-4 w-4 sm:h-5 sm:w-5" />
-                    )}
-                  </button>
-                </div>
-              </div>
-              <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                  {t("form.wifiSecurity")}
-                </label>
-                <select
-                  value={wifiSecurity}
-                  onChange={(e) =>
-                    setWifiSecurity(e.target.value as WiFiSecurity)
-                  }
-                  className="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 text-sm sm:text-base border"
-                >
-                  <option value="WPA">WPA/WPA2</option>
-                  <option value="WEP">WEP</option>
-                  <option value="nopass">Sin contraseña</option>
-                </select>
-              </div>
-              <div className="flex items-center gap-3">
-                <input
-                  type="checkbox"
-                  id="wifiHidden"
-                  checked={wifiHidden}
-                  onChange={(e) => setWifiHidden(e.target.checked)}
-                  className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-                />
-                <label
-                  htmlFor="wifiHidden"
-                  className="text-sm font-medium text-gray-700 dark:text-gray-300 cursor-pointer"
-                >
-                  {t("form.wifiHidden")}
-                </label>
-              </div>
+          </div>
+          <div>
+            <label htmlFor="qr-wifi-password" className="field-label">
+              {t("form.wifiPassword")}
+            </label>
+            <div className="relative">
+              <input
+                id="qr-wifi-password"
+                type={showPassword ? "text" : "password"}
+                value={wifiPassword}
+                onChange={(e) => setWifiPassword(e.target.value)}
+                placeholder={t("form.wifiPasswordPlaceholder")}
+                className="field pr-12"
+              />
+              <button
+                type="button"
+                onClick={() => setShowPassword(!showPassword)}
+                className="absolute right-1 top-1/2 inline-flex h-10 w-10 -translate-y-1/2 cursor-pointer items-center justify-center rounded-lg text-slate-600 transition-colors hover:text-slate-900 dark:text-slate-400 dark:hover:text-white"
+                aria-label={
+                  showPassword ? t("form.hidePassword") : t("form.showPassword")
+                }
+              >
+                {showPassword ? (
+                  <EyeOff className="h-5 w-5" aria-hidden="true" />
+                ) : (
+                  <Eye className="h-5 w-5" aria-hidden="true" />
+                )}
+              </button>
             </div>
-          </>
-        ) : (
-          <>
-            <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+          </div>
+          <div>
+            <label htmlFor="qr-wifi-security" className="field-label">
+              {t("form.wifiSecurity")}
+            </label>
+            <select
+              id="qr-wifi-security"
+              value={wifiSecurity}
+              onChange={(e) => setWifiSecurity(e.target.value as WiFiSecurity)}
+              className="field"
+            >
+              <option value="WPA">WPA/WPA2</option>
+              <option value="WEP">WEP</option>
+              <option value="nopass">{t("form.wifiNoPassword")}</option>
+            </select>
+          </div>
+          <div className="flex items-center gap-3">
+            <input
+              type="checkbox"
+              id="wifiHidden"
+              checked={wifiHidden}
+              onChange={(e) => setWifiHidden(e.target.checked)}
+              className={CHECKBOX}
+            />
+            <label
+              htmlFor="wifiHidden"
+              className="cursor-pointer text-sm font-medium text-slate-800 dark:text-slate-200"
+            >
+              {t("form.wifiHidden")}
+            </label>
+          </div>
+        </div>
+      ) : (
+        <>
+          <div>
+            <label
+              htmlFor={type === "url" ? "qr-url" : "qr-whatsapp-phone"}
+              className="field-label"
+            >
               {type === "url" ? t("form.urlLabel") : t("form.whatsappLabel")}
             </label>
-            <div className="flex gap-2">
-              <div className="relative flex-1">
-                {/* Input URL (siempre montado, solo visible en tipo URL) */}
-                <div className={type === "url" ? "block" : "hidden"}>
-                  <Link className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 dark:text-gray-500 h-4 w-4 sm:h-5 sm:w-5 z-10 pointer-events-none" />
-                  <input
-                    type="url"
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)}
-                    placeholder={t("form.urlPlaceholder")}
-                    className="pl-9 sm:pl-10 w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 text-sm sm:text-base border relative"
-                    style={{
-                      isolation: "isolate",
-                      contain: "layout style paint",
-                    }}
-                  />
-                </div>
-
-                {/* Input WhatsApp (PhoneInput, siempre montado, solo visible en tipo WhatsApp) */}
-                <div className={type === "whatsapp" ? "block" : "hidden"}>
-                  <div className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-700 shadow-sm focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 px-2 py-1">
-                    <PhoneInput
-                      defaultCountry="pe"
-                      countries={LATAM_COUNTRIES}
-                      value={whatsappPhone}
-                      onChange={(phone) => setWhatsappPhone(phone)}
-                      placeholder={t("form.whatsappPlaceholder")}
-                      inputClassName="!w-full !bg-transparent !text-gray-900 dark:!text-white !border-0 !shadow-none !text-sm sm:!text-base focus:!ring-0 focus:!outline-none"
-                    />
-                  </div>
-                </div>
-              </div>
+            {/* URL input (always mounted, only visible for the URL type) */}
+            <div className={type === "url" ? "relative" : "hidden"}>
+              <Link className={`${FIELD_ICON} top-1/2 -translate-y-1/2`} aria-hidden="true" />
+              <input
+                id="qr-url"
+                type="url"
+                value={url}
+                onChange={(e) => setUrl(e.target.value)}
+                placeholder={t("form.urlPlaceholder")}
+                className="field pl-10"
+              />
             </div>
 
-            {/* Campo de mensaje para WhatsApp */}
-            {type === "whatsapp" && (
-              <div className="mt-4 isolate">
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                  {t("form.whatsappMessage")}
-                </label>
-                <textarea
-                  value={whatsappMessage}
-                  onChange={(e) => setWhatsappMessage(e.target.value)}
-                  placeholder={t("form.whatsappMessagePlaceholder")}
-                  className="mt-1 w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 border text-sm sm:text-base"
-                  rows={3}
-                  style={{
-                    isolation: "isolate",
-                    contain: "layout style paint",
+            {/* WhatsApp PhoneInput (always mounted, only visible for the WhatsApp type) */}
+            <div className={type === "whatsapp" ? "block" : "hidden"}>
+              <div className="rounded-lg border border-slate-300 bg-white transition-colors focus-within:border-teal-700 focus-within:ring-2 focus-within:ring-teal-700/30 dark:border-slate-700 dark:bg-slate-950 dark:focus-within:border-teal-400 dark:focus-within:ring-teal-400/30">
+                <PhoneInput
+                  defaultCountry="pe"
+                  countries={SUPPORTED_COUNTRIES}
+                  value={whatsappPhone}
+                  onChange={(phone) => setWhatsappPhone(phone)}
+                  placeholder={t("form.whatsappPlaceholder")}
+                  inputProps={{ id: "qr-whatsapp-phone" }}
+                  className="!w-full"
+                  inputClassName="!w-full !border-0 !bg-transparent !text-base !text-slate-900 !shadow-none focus:!outline-none focus:!ring-0 dark:!text-slate-100"
+                  countrySelectorStyleProps={{
+                    buttonClassName:
+                      "!border-0 !border-r !border-slate-300 !bg-transparent dark:!border-slate-700",
                   }}
                 />
               </div>
-            )}
-          </>
-        )}
+            </div>
+          </div>
 
-        {/* Slider de tamaño */}
-        <div className="mt-6">
-          <label id="qr-size-label" htmlFor="qr-size-slider" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-3">
+          {/* WhatsApp message */}
+          {type === "whatsapp" && (
+            <div>
+              <label htmlFor="qr-whatsapp-message" className="field-label">
+                {t("form.whatsappMessage")}
+              </label>
+              <textarea
+                id="qr-whatsapp-message"
+                value={whatsappMessage}
+                onChange={(e) => setWhatsappMessage(e.target.value)}
+                placeholder={t("form.whatsappMessagePlaceholder")}
+                className="field"
+                rows={3}
+              />
+            </div>
+          )}
+        </>
+      )}
+
+      {/* Customization options */}
+      <div className="space-y-5 border-t border-slate-200 pt-5 dark:border-slate-800">
+        {/* Size slider */}
+        <div>
+          <label id="qr-size-label" htmlFor="qr-size-slider" className="field-label">
             {t("form.sizeLabel")}
           </label>
           <div
@@ -335,26 +302,79 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
                 return false;
               }}
               draggable="false"
-              className="w-full h-5 bg-transparent cursor-pointer slider select-none"
+              className="slider h-6 w-full cursor-pointer select-none bg-transparent"
               aria-labelledby="qr-size-label"
             />
           </div>
-          <div className="flex justify-between items-center mt-3">
-            <span className="text-xs text-gray-500 dark:text-gray-400">
+          <div className="mt-2 flex items-center justify-between gap-2">
+            <span className="text-sm text-slate-600 dark:text-slate-400">
               {t("form.lowQuality")}
             </span>
-            <span className="text-sm font-semibold text-gray-900 dark:text-white">
+            <span className="text-sm font-semibold text-slate-900 dark:text-white">
               {qrSize} x {qrSize} Px
             </span>
-            <span className="text-xs text-gray-500 dark:text-gray-400">
+            <span className="text-sm text-slate-600 dark:text-slate-400">
               {t("form.highQuality")}
             </span>
           </div>
         </div>
 
-        {/* Opción de logo */}
-        <div className="mt-6">
-          <div className="flex items-center gap-3 mb-3">
+        {/* Color + format */}
+        <div className="grid gap-5 sm:grid-cols-2">
+          <div>
+            <label id="qr-color-label" htmlFor="qr-color-picker" className="field-label">
+              {t("form.colorLabel")}
+            </label>
+            <div className="flex items-center gap-3">
+              <input
+                id="qr-color-picker"
+                type="color"
+                value={qrColor}
+                onChange={(e) => setQrColor(e.target.value)}
+                className="h-11 w-14 shrink-0 cursor-pointer rounded-lg border border-slate-300 bg-white p-1 dark:border-slate-700 dark:bg-slate-950"
+                aria-labelledby="qr-color-label"
+              />
+              <input
+                type="text"
+                value={qrColor}
+                onChange={(e) => {
+                  const value = e.target.value;
+                  if (/^#[0-9A-Fa-f]{0,6}$/.test(value)) {
+                    setQrColor(value);
+                  }
+                }}
+                placeholder="#000000"
+                className="field min-w-0 flex-1 font-mono"
+                aria-labelledby="qr-color-label"
+              />
+            </div>
+            <p className="field-hint">{t("form.colorHint")}</p>
+          </div>
+
+          <div>
+            <label id="qr-format-label" htmlFor="qr-format-select" className="field-label">
+              {t("form.formatLabel")}
+            </label>
+            <select
+              id="qr-format-select"
+              value={outputFormat}
+              onChange={(e) =>
+                setOutputFormat(e.target.value as "jpg" | "png" | "pdf" | "svg")
+              }
+              className="field"
+              aria-labelledby="qr-format-label"
+            >
+              <option value="jpg">JPG</option>
+              <option value="png">PNG</option>
+              <option value="pdf">PDF</option>
+              <option value="svg">SVG</option>
+            </select>
+          </div>
+        </div>
+
+        {/* Logo option */}
+        <div>
+          <div className="flex items-center gap-3">
             <input
               type="checkbox"
               id="enableLogo"
@@ -366,44 +386,41 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
                   qrGenerator.setLogoPreview("");
                 }
               }}
-              className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              className={CHECKBOX}
             />
             <label
               htmlFor="enableLogo"
-              className="text-sm font-medium text-gray-700 dark:text-gray-300 flex items-center gap-2 cursor-pointer"
+              className="flex cursor-pointer items-center gap-2 text-sm font-medium text-slate-800 dark:text-slate-200"
             >
-              <ImageIcon className="h-4 w-4 text-blue-600 dark:text-blue-400" />
+              <ImageIcon className="h-4 w-4 text-teal-700 dark:text-teal-400" aria-hidden="true" />
               {t("form.enableLogo")}
             </label>
           </div>
 
           {enableLogo && (
-            <div className="mt-3 space-y-3">
+            <div className="mt-4 space-y-4">
               <div>
-                <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
+                <label htmlFor="qr-logo-file" className="field-label">
                   {t("form.selectLogo")}
                 </label>
                 <input
+                  id="qr-logo-file"
                   type="file"
                   accept="image/*"
                   onChange={handleLogoChange}
-                  className="block w-full text-sm text-gray-500 dark:text-gray-400 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-blue-50 dark:file:bg-blue-900 file:text-blue-700 dark:file:text-blue-300 hover:file:bg-blue-100 dark:hover:file:bg-blue-800 cursor-pointer"
+                  className="block w-full cursor-pointer text-sm text-slate-600 file:mr-4 file:cursor-pointer file:rounded-lg file:border-0 file:bg-teal-50 file:px-4 file:py-2.5 file:text-sm file:font-semibold file:text-teal-800 hover:file:bg-teal-100 dark:text-slate-400 dark:file:bg-teal-950 dark:file:text-teal-200 dark:hover:file:bg-teal-900"
                 />
-                <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-                  {t("form.logoFormats")}
-                </p>
+                <p className="field-hint">{t("form.logoFormats")}</p>
               </div>
 
               {logoPreview && (
-                <div className="mt-3">
-                  <p className="text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-                    {t("form.logoPreview")}
-                  </p>
-                  <div className="border border-gray-300 dark:border-gray-600 rounded-md p-3 bg-gray-50 dark:bg-gray-700 flex items-center justify-center">
+                <div>
+                  <p className="field-label">{t("form.logoPreview")}</p>
+                  <div className="flex items-center justify-center rounded-lg border border-slate-200 bg-slate-50 p-3 dark:border-slate-700 dark:bg-slate-800">
                     <img
                       src={logoPreview}
                       alt="Preview del logo"
-                      className="max-w-[100px] max-h-[100px] object-contain"
+                      className="max-h-[100px] max-w-[100px] object-contain"
                     />
                   </div>
                 </div>
@@ -411,92 +428,22 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
             </div>
           )}
         </div>
-
-        {/* Selector de color */}
-        <div className="mt-6">
-          <label id="qr-color-label" htmlFor="qr-color-picker" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            {t("form.colorLabel")}
-          </label>
-          <div className="flex items-center gap-3 isolate">
-            <input
-              id="qr-color-picker"
-              type="color"
-              value={qrColor}
-              onChange={(e) => setQrColor(e.target.value)}
-              className="h-10 w-20 rounded border border-gray-300 dark:border-gray-600 cursor-pointer focus:outline-none focus:ring-0 focus:border-gray-300 dark:focus:border-gray-600"
-              style={{
-                isolation: "isolate",
-                willChange: "auto",
-              }}
-              aria-labelledby="qr-color-label"
-            />
-            <input
-              type="text"
-              value={qrColor}
-              onChange={(e) => {
-                const value = e.target.value;
-                if (/^#[0-9A-Fa-f]{0,6}$/.test(value)) {
-                  setQrColor(value);
-                }
-              }}
-              placeholder="#000000"
-              className="flex-1 rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 text-sm sm:text-base border font-mono"
-              style={{
-                isolation: "isolate",
-                contain: "layout style paint",
-              }}
-            />
-          </div>
-          <p className="mt-1 text-xs text-gray-500 dark:text-gray-400">
-            {t("form.colorHint")}
-          </p>
-        </div>
-
-        {/* Selector de formato */}
-        <div className="mt-6 isolate">
-          <label id="qr-format-label" htmlFor="qr-format-select" className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
-            {t("form.formatLabel")}
-          </label>
-          <select
-            id="qr-format-select"
-            value={outputFormat}
-            onChange={(e) =>
-              setOutputFormat(e.target.value as "jpg" | "png" | "pdf" | "svg")
-            }
-            className="w-full rounded-md border-gray-300 dark:border-gray-600 dark:bg-gray-700 dark:text-white shadow-sm focus:border-blue-500 focus:ring-blue-500 p-2 sm:p-2.5 text-sm sm:text-base border"
-            style={{
-              isolation: "isolate",
-              contain: "layout style paint",
-            }}
-            aria-labelledby="qr-format-label"
-          >
-            <option value="jpg">JPG</option>
-            <option value="png">PNG</option>
-            <option value="pdf">PDF</option>
-            <option value="svg">SVG</option>
-          </select>
-        </div>
-
-        <div className="mt-4">
-          <button
-            onClick={generateQRCode}
-            disabled={loading}
-            className={`w-full px-4 py-2.5 sm:py-2 text-sm sm:text-base ${
-              loading
-                ? "bg-gray-400"
-                : type === "url"
-                  ? "bg-blue-600 hover:bg-blue-700"
-                  : type === "whatsapp"
-                    ? "bg-green-600 hover:bg-green-700"
-                    : type === "wifi"
-                      ? "bg-purple-600 hover:bg-purple-700"
-                      : "bg-orange-600 hover:bg-orange-700"
-            } text-white rounded-md transition-colors disabled:cursor-not-allowed`}
-          >
-            {loading ? t("form.generating") : t("form.generateButton")}
-          </button>
-        </div>
       </div>
+
+      <button
+        type="button"
+        onClick={generateQRCode}
+        disabled={loading}
+        aria-busy={loading}
+        className="btn-cta w-full"
+      >
+        {loading && <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />}
+        {loading ? t("form.generating") : t("form.generateButton")}
+      </button>
+      <p className="field-hint -mt-2 flex items-start gap-2">
+        <Smartphone className="mt-0.5 h-4 w-4 shrink-0 text-teal-700 dark:text-teal-400" aria-hidden="true" />
+        <span>{t("form.testHint")}</span>
+      </p>
     </div>
   );
 };
