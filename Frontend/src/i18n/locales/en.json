@@ -14,8 +14,13 @@
       "url": "URL",
       "whatsapp": "WhatsApp",
       "wifi": "WiFi",
-      "text": "Text"
-    }
+      "text": "Text",
+      "resenasGoogle": "Google reviews",
+      "vcard": "Contact card",
+      "ubicacion": "Location",
+      "email": "Email"
+    },
+    "moreTypes": "More types"
   },
   "main": {
     "sectionTitle": "Create your QR code"
@@ -51,7 +56,165 @@
     "colorHint": "Use the color picker or enter the hexadecimal code",
     "formatLabel": "Output Format",
     "generateButton": "Generate QR",
-    "generating": "Generating..."
+    "generating": "Generating...",
+    "typeTabsLabel": "QR code type",
+    "payloadPreview": "Content preview",
+    "payloadPreviewEmpty": "Fill in the required fields to see here what the code will store.",
+    "testHint": "Test the code with your phone before printing it.",
+    "types": {
+      "resenas-google": {
+        "fields": {
+          "link": {
+            "label": "Google review link",
+            "placeholder": "https://g.page/r/...",
+            "hint": "Paste the link your Google Business Profile gives you to ask for reviews."
+          }
+        },
+        "errors": {
+          "required": "Paste the review link of your business.",
+          "invalid": "Enter a full link that starts with https://."
+        },
+        "warnings": {
+          "notGoogle": "This link does not look like a Google link. You can still use it, but check that it is the right one."
+        },
+        "guide": {
+          "title": "How to get your link",
+          "intro": "Button names may vary depending on your account, your country and Google updates.",
+          "steps": [
+            "Open your Google Business Profile with the account that manages your business.",
+            "Look for the “Read reviews” or “Ask for reviews” option.",
+            "Press “Share” and copy the link.",
+            "Paste it in the field above."
+          ]
+        }
+      },
+      "vcard": {
+        "groups": {
+          "address": "Address (optional)"
+        },
+        "fields": {
+          "firstName": {
+            "label": "First name",
+            "placeholder": "Anna"
+          },
+          "lastName": {
+            "label": "Last name",
+            "placeholder": "Smith"
+          },
+          "company": {
+            "label": "Company",
+            "placeholder": "La Espiga Bakery"
+          },
+          "jobTitle": {
+            "label": "Job title",
+            "placeholder": "Manager"
+          },
+          "mobile": {
+            "label": "Mobile phone",
+            "placeholder": "+1 555 000 0000"
+          },
+          "phoneWork": {
+            "label": "Landline or work phone (optional)",
+            "placeholder": "+1 555 000 0001"
+          },
+          "email": {
+            "label": "Email",
+            "placeholder": "anna@example.com"
+          },
+          "website": {
+            "label": "Website",
+            "placeholder": "https://example.com"
+          },
+          "street": {
+            "label": "Street and number",
+            "placeholder": "1 Main Street"
+          },
+          "city": {
+            "label": "City",
+            "placeholder": "Madrid"
+          },
+          "postalCode": {
+            "label": "Postal code",
+            "placeholder": "28001"
+          },
+          "country": {
+            "label": "Country",
+            "placeholder": "Spain"
+          },
+          "note": {
+            "label": "Note (optional)",
+            "placeholder": "Opening hours, services, how you prefer to be contacted..."
+          }
+        },
+        "errors": {
+          "nameOrCompany": "Enter at least your name or your company name.",
+          "invalidEmail": "Enter a valid email, for example name@example.com."
+        }
+      },
+      "ubicacion": {
+        "fields": {
+          "mode": {
+            "label": "How do you want to give the place",
+            "options": {
+              "address": "Address or place",
+              "coords": "Latitude and longitude"
+            }
+          },
+          "address": {
+            "label": "Address or place name",
+            "placeholder": "1 Main Square, Madrid",
+            "hint": "Write it the way you would search for it in Google Maps."
+          },
+          "lat": {
+            "label": "Latitude",
+            "placeholder": "40.4168"
+          },
+          "lng": {
+            "label": "Longitude",
+            "placeholder": "-3.7038"
+          }
+        },
+        "errors": {
+          "addressRequired": "Enter an address or the name of a place.",
+          "latRequired": "Enter the latitude.",
+          "latInvalid": "The latitude must be a number, for example 40.4168.",
+          "latRange": "The latitude must be between -90 and 90.",
+          "lngRequired": "Enter the longitude.",
+          "lngInvalid": "The longitude must be a number, for example -3.7038.",
+          "lngRange": "The longitude must be between -180 and 180."
+        },
+        "geo": {
+          "button": "Use my location",
+          "loading": "Finding your location...",
+          "hint": "Your browser asks for permission only when you press the button. QR Gratis does not send your position to any server.",
+          "success": "Done: we filled in the latitude and longitude with your current position.",
+          "denied": "We do not have permission to see your location. You can allow it in your browser settings or type the address by hand.",
+          "unavailable": "We could not get your location right now. Type the address or the coordinates by hand.",
+          "timeout": "Finding your location took too long. Try again or type the details by hand.",
+          "unsupported": "Your browser cannot provide your location. Type the address by hand."
+        }
+      },
+      "email": {
+        "fields": {
+          "to": {
+            "label": "Recipient email",
+            "placeholder": "hello@mybusiness.com"
+          },
+          "subject": {
+            "label": "Subject (optional)",
+            "placeholder": "I would like a quote"
+          },
+          "body": {
+            "label": "Message (optional)",
+            "placeholder": "Hello, I would like to know..."
+          }
+        },
+        "errors": {
+          "toRequired": "Enter the recipient email.",
+          "toInvalid": "Enter a valid email, for example hello@example.com."
+        }
+      }
+    }
   },
   "qr": {
     "title": "Generated QR Code",
@@ -68,7 +231,7 @@
     "imageAlt": "Generated QR code"
   },
   "footer": {
-    "description": "Free tool to generate QR codes quickly and easily. No registration, no limits, no complications. Create customized QR codes for URLs, WhatsApp, WiFi, and text in seconds.",
+    "description": "Free tool to generate QR codes quickly and easily. No sign-up, no limits, no hassle. Create QR codes for links, WhatsApp, WiFi, text, Google reviews, contact cards, locations and email.",
     "features": "Features",
     "free": "100% Free",
     "instant": "Instant generation",
@@ -218,7 +381,7 @@
         "items": [
           {
             "q": "What types of QR codes can I create?",
-            "a": "You can create codes for [links (URL)](/generador-qr/url), [WhatsApp](/generador-qr/whatsapp), [WiFi networks](/generador-qr/wifi) and [text](/generador-qr/texto). For all of them you can choose the color and size, and add a logo. For now there are no other types, such as contact cards or calendar events."
+            "a": "You can create codes for [links (URL)](/generador-qr/url), [WhatsApp](/generador-qr/whatsapp), [WiFi networks](/generador-qr/wifi), [text](/generador-qr/texto), [Google reviews](/generador-qr/resenas-google), [contact cards](/generador-qr/vcard), [locations](/generador-qr/ubicacion) and [email](/generador-qr/email). For all of them you can choose the color and size, and add a logo. For now there are no other types, such as calendar events."
           },
           {
             "q": "Does it cost anything, or is there a limit on codes?",
@@ -297,7 +460,7 @@
     "features": {
       "title": "Key Features",
       "item1": "Instant QR code generation without limits",
-      "item2": "Multiple QR types: URLs, WhatsApp, WiFi, and text",
+      "item2": "Multiple QR types: links, WhatsApp, WiFi, text, reviews, contact, location and email",
       "item3": "Full customization: size, color, and format",
       "item4": "Support for custom logos",
       "item5": "Local history to access your previous codes"
@@ -354,7 +517,7 @@
       "lead": "Create a QR code for a link, WhatsApp, your WiFi network or a text in seconds. No sign-up, no ads and no expiry date.",
       "browserRequirements": "Requires a browser with JavaScript and an internet connection to load the page",
       "featureList": [
-        "QR codes for links, WhatsApp, WiFi and text",
+        "QR codes for links, WhatsApp, WiFi, text, Google reviews, contact, location and email",
         "Download as PNG, JPG, SVG and PDF",
         "Custom color, size (200 to 2000 pixels) and logo",
         "No sign-up, no ads and no watermark",
@@ -366,7 +529,7 @@
         "steps": [
           {
             "title": "Choose the type of code",
-            "text": "Select link (URL), WhatsApp, WiFi or text in the tabs above. Each type only shows the fields it needs."
+            "text": "Choose in the tabs above: link (URL), WhatsApp, WiFi, text, Google reviews, contact card, location or email. Each type shows only the fields it needs."
           },
           {
             "title": "Fill in the details and customize it",
@@ -402,6 +565,26 @@
             "title": "Text",
             "text": "Shows a note, some instructions or an inventory code.",
             "example": "Example: usage steps stuck on a device."
+          },
+          "resenas-google": {
+            "title": "Google reviews",
+            "text": "Takes your customers straight to writing a review of your business.",
+            "example": "Example: a sign next to the till."
+          },
+          "vcard": {
+            "title": "Contact card",
+            "text": "Whoever scans it saves your name, phone and email in their contacts.",
+            "example": "Example: the back of your business card."
+          },
+          "ubicacion": {
+            "title": "Location",
+            "text": "Opens an address or some coordinates in Google Maps.",
+            "example": "Example: directions to your shop or to an event."
+          },
+          "email": {
+            "title": "Email",
+            "text": "Opens a new email with the recipient, subject and message already typed.",
+            "example": "Example: asking for a quote from a flyer."
           }
         }
       },
@@ -940,6 +1123,430 @@
             {
               "q": "Do you store the text I type?",
               "a": "No. The code is created on your device and the text is not sent to any server. The history of this tool is saved only in your browser."
+            }
+          ]
+        }
+      },
+      "resenas-google": {
+        "breadcrumb": "Google reviews QR code",
+        "other": "Takes your customers straight to leaving a review.",
+        "h1": "Free QR code for Google reviews",
+        "lead": "Create a QR code that takes your customers to the page where they can review your business. Paste the link from your Google profile, download the code and print it. No sign-up and no expiry.",
+        "how": {
+          "title": "How to create a QR code for Google reviews",
+          "steps": [
+            {
+              "title": "Get your business review link",
+              "text": "Open your Google Business Profile, look for the option to read or ask for reviews and copy the share link. Button names may vary. Below the form you will find a guide with the usual steps."
+            },
+            {
+              "title": "Paste it in the form",
+              "text": "Paste the full link, which starts with https://. If it does not look like a Google link we will warn you, but you can still use it."
+            },
+            {
+              "title": "Generate, test and download",
+              "text": "Press “Generate QR” and scan it with your phone: the window to write a review of your business should open. Download the file as PNG, JPG, SVG or PDF and print it."
+            }
+          ]
+        },
+        "about": {
+          "title": "How a Google reviews QR works",
+          "paragraphs": [
+            "This code stores a web link: the one Google gives you to share the reviews of your business. When someone scans it with the camera, the phone opens it and the customer lands on the page where they can write their opinion, without searching for your business on the map.",
+            "Google does not publish an official format to build that link from a place identifier, so we do not make one up: you paste the link your profile gives you. The code is created on your device and the link is not sent to any server. It is a static code: if the link changes, you will have to create a new one."
+          ]
+        },
+        "useCases": {
+          "title": "Where to use a reviews QR",
+          "intro": "It works best when the customer is happy and has their phone at hand.",
+          "items": [
+            {
+              "title": "At the counter",
+              "text": "Place it next to the till, on a small stand. Someone who has just paid can leave their opinion while they wait."
+            },
+            {
+              "title": "On the table",
+              "text": "Print it on a table sign or on the menu of your bar or restaurant, so the customer writes their review after eating."
+            },
+            {
+              "title": "On the receipt or invoice",
+              "text": "Add the code at the bottom of the receipt, the invoice or the delivery note. The opinion arrives when the customer looks over their purchase."
+            },
+            {
+              "title": "On a card or flyer",
+              "text": "Include it on your business card, in the order package or on a flyer. It is a discreet reminder for whoever took your product home."
+            }
+          ]
+        },
+        "tips": {
+          "title": "Tips for a reviews QR",
+          "items": [
+            {
+              "title": "Do not offer anything in exchange for the review",
+              "text": "Google’s policies do not allow offering incentives in exchange for reviews, neither discounts nor gifts. Ask for the opinion with no conditions."
+            },
+            {
+              "title": "Ask at the right moment",
+              "text": "The best moment is right after a good experience: when you hand over the order, finish the service or say goodbye. A friendly line next to the code helps, for example “Did you like it? Tell us”."
+            },
+            {
+              "title": "Test the link before printing",
+              "text": "Scan the code with your phone and check that it opens the review window of your business and not that of another place with a similar name."
+            },
+            {
+              "title": "Make it easy to scan",
+              "text": "Print it at least 3 x 3 cm, in a dark color on a light background, and place it somewhere with good light. Add a short line that explains what happens when you scan it."
+            },
+            {
+              "title": "If your link changes, create a new code",
+              "text": "A static code cannot be edited. If you ever change your link or your profile, the printed code will keep leading to the old one."
+            }
+          ]
+        },
+        "faq": {
+          "title": "Questions about the Google reviews QR",
+          "items": [
+            {
+              "q": "Where do I get my business review link?",
+              "a": "In your Google Business Profile. Look for the option to read or ask for reviews and copy the share link. The names of the options may vary depending on your account and country. Below the form you will find a guide with the usual steps."
+            },
+            {
+              "q": "Can I do it with just the name of my business?",
+              "a": "No. Google does not document an official review link format that can be built from a name or a place identifier, so we do not create links on our own. You need to paste the one your profile gives you."
+            },
+            {
+              "q": "Does it work on iPhone and Android?",
+              "a": "Yes. The camera of the iPhone and of most Android phones reads the code and opens the link. The person scanning may need to sign in with their Google account to post the review."
+            },
+            {
+              "q": "Can I give a discount or a gift to whoever leaves a review?",
+              "a": "It is not advisable. Google’s policies do not allow offering incentives in exchange for reviews. You can ask for the opinion and thank people for it, but without tying it to any reward."
+            },
+            {
+              "q": "What happens if I change the link or my profile?",
+              "a": "The code is static: it holds the link as you pasted it and cannot be edited once printed. If the link changes, create a new code and replace the printed one."
+            },
+            {
+              "q": "Is my link sent to any server?",
+              "a": "No. The code is created on your device and the link is not sent to any server. The history is saved only in your browser and you can delete it whenever you want."
+            }
+          ]
+        }
+      },
+      "vcard": {
+        "breadcrumb": "Contact card (vCard) QR code",
+        "other": "Share your contact details with a single scan.",
+        "h1": "Free contact card (vCard) QR code",
+        "lead": "Create a QR code with your name, phone, email and website. Whoever scans it can save you to their contacts without typing anything. Ideal for business cards. No sign-up and no expiry.",
+        "how": {
+          "title": "How to create a contact card QR code",
+          "steps": [
+            {
+              "title": "Fill in your details",
+              "text": "Enter at least your name or your company name. The rest is optional: last name, job title, phones, email, website, address and a note. Empty fields are not included."
+            },
+            {
+              "title": "Check the content preview",
+              "text": "Below the form you can see the exact text the code will store. Check that the details are correct."
+            },
+            {
+              "title": "Generate, test and download",
+              "text": "Press “Generate QR” and scan it with your phone: it should offer to save the contact. Download the file as PNG, JPG, SVG or PDF and add it to your card."
+            }
+          ]
+        },
+        "about": {
+          "title": "How a contact card QR works",
+          "paragraphs": [
+            "A vCard is a standard format for contact cards, the same one phone address books use. The code stores your details as text inside the pattern (vCard 3.0, in UTF-8, so accents and special letters are kept). When scanned, the phone offers to create a new contact with those details.",
+            "You do not need internet to read it: the details are inside the code, which is created on your device. The more details you add, the denser the pattern and the larger you will have to print it for it to read well. It is a static code: if you change phone number or job, you will have to create a new one."
+          ]
+        },
+        "useCases": {
+          "title": "Where to use a contact card QR",
+          "intro": "It works anywhere someone asks for your details and you would rather not read them out.",
+          "items": [
+            {
+              "title": "Business card",
+              "text": "Print the code on the back of your card. Whoever gets it saves you on their phone in seconds, without typing your number."
+            },
+            {
+              "title": "Trade fair or event",
+              "text": "Put it on your badge or on your stand panel. Contacts save you without having to write your email on paper."
+            },
+            {
+              "title": "Résumé",
+              "text": "Add the code to your printed résumé so that whoever receives it can save you on their phone with the camera, without copying your details."
+            },
+            {
+              "title": "Shop or local business",
+              "text": "Stick it on the window or on the counter with your phone, your address and your website, so your customers save you to their contacts."
+            }
+          ]
+        },
+        "tips": {
+          "title": "Tips for a contact card QR",
+          "items": [
+            {
+              "title": "Include only what you need",
+              "text": "The more fields, the denser the code. Name, phone, email and website are usually enough, and it reads better, especially if you print it small."
+            },
+            {
+              "title": "Write the phone with the country code",
+              "text": "For example +34 600 000 000. That way it also works for whoever saves you from another country."
+            },
+            {
+              "title": "Test it with your phone before printing",
+              "text": "The iPhone and most Android cameras offer to save the contact. Some older Android phones may leave out fields, so it is worth checking."
+            },
+            {
+              "title": "Leave space for it on the card",
+              "text": "Make it as large as the design allows and leave a white margin around it. A code squeezed into a corner reads worse."
+            },
+            {
+              "title": "Create a new one if your details change",
+              "text": "A static code cannot be edited. If you change phone, email or position, generate another and replace the cards."
+            }
+          ]
+        },
+        "faq": {
+          "title": "Questions about the contact card QR",
+          "items": [
+            {
+              "q": "What is a vCard?",
+              "a": "It is a standard format for contact cards. Phones understand it and turn it into a contact you can save in your address book."
+            },
+            {
+              "q": "Does it work on iPhone and Android?",
+              "a": "Yes. The iPhone and most Android cameras read the code and offer to save the contact. On some older Android phones fields may be missing when saving, so it is worth testing it with your phone before printing."
+            },
+            {
+              "q": "Which details are required?",
+              "a": "Only the name or the company is needed. Everything else is optional and, if you leave it empty, it is not included in the code."
+            },
+            {
+              "q": "Can I edit the card after printing it?",
+              "a": "No. It is a static code: the details stay inside the pattern. If they change, create a new code."
+            },
+            {
+              "q": "Are my details sent to any server?",
+              "a": "No. The code is created on your device and your contact details are not sent to any server. Anyone who scans the code will see what you wrote, so include only what you want to share."
+            },
+            {
+              "q": "Does it support accents and special letters?",
+              "a": "Yes. The content is stored in UTF-8, so names like Núñez or José display correctly. Commas, semicolons and line breaks are written in the correct format so they do not break the card."
+            }
+          ]
+        }
+      },
+      "ubicacion": {
+        "breadcrumb": "Location QR code",
+        "other": "Opens your address in Google Maps with one scan.",
+        "h1": "Free Google Maps location QR code",
+        "lead": "Create a QR code that opens an address or some coordinates in Google Maps. Useful for shops, events and meeting points. No sign-up and no expiry.",
+        "how": {
+          "title": "How to create a location QR code",
+          "steps": [
+            {
+              "title": "Enter the address or the coordinates",
+              "text": "Type the address or the name of the place the way you would search for it in Google Maps. If you prefer coordinates, switch to latitude and longitude or press “Use my location”."
+            },
+            {
+              "title": "Check the link",
+              "text": "Below the form you can see the link the code will store. It is a Google Maps search link."
+            },
+            {
+              "title": "Generate, test and download",
+              "text": "Press “Generate QR” and scan it with your phone: it should open the place on the map. Download the file as PNG, JPG, SVG or PDF."
+            }
+          ]
+        },
+        "about": {
+          "title": "How a location QR works",
+          "paragraphs": [
+            "The code stores a Google Maps link with your address or your coordinates. When scanned, the phone opens the Google Maps app if it is installed and, if not, opens the map in the browser. It also works on iPhone.",
+            "Write the full address, with street, number and city, so that Maps finds the right place. The “Use my location” button only asks for permission when you press it, and QR Gratis does not send that position to any server. It is a static code: if you move, you will have to create a new one."
+          ]
+        },
+        "useCases": {
+          "title": "Where to use a location QR",
+          "intro": "It works when you want someone to reach a place without having to explain the address.",
+          "items": [
+            {
+              "title": "Shop or premises",
+              "text": "Put it on a flyer, a card or a sign so your customers know how to get to your door."
+            },
+            {
+              "title": "Event or wedding",
+              "text": "Include the code in the invitation so guests open the venue on the map with one tap."
+            },
+            {
+              "title": "Meeting point",
+              "text": "Mark a pick-up spot, a car park or the entrance to a building site with coordinates, even if it has no clear address."
+            },
+            {
+              "title": "Holiday rental",
+              "text": "Add it to the house guide so your guests find the accommodation, the parking or the place to collect the keys."
+            }
+          ]
+        },
+        "tips": {
+          "title": "Tips for a location QR",
+          "items": [
+            {
+              "title": "Use the full address",
+              "text": "Include street, number, city and, if needed, country. An incomplete address may show another place."
+            },
+            {
+              "title": "Check the map before printing",
+              "text": "Scan the code and see that the marker lands where it should. If not, try coordinates, which are more exact."
+            },
+            {
+              "title": "Use coordinates when there is no address",
+              "text": "In a park, on a beach or in a field, use latitude and longitude. You can press “Use my location” while you are there."
+            },
+            {
+              "title": "If you move, create a new code",
+              "text": "The code is static. If you change address, the printed code will keep leading to the old one."
+            },
+            {
+              "title": "Add a line next to the code",
+              "text": "Write something like “How to get here” near the code, so whoever sees it knows what happens when they scan it."
+            }
+          ]
+        },
+        "faq": {
+          "title": "Questions about the location QR",
+          "items": [
+            {
+              "q": "Does it open in Google Maps or in the browser?",
+              "a": "If the phone has the Google Maps app, it opens there. If not, the map opens in the browser. It also works on iPhone."
+            },
+            {
+              "q": "What is the difference between an address and coordinates?",
+              "a": "An address is easier to type, but Maps may interpret it differently. Coordinates (latitude and longitude) point to an exact spot and are useful for places without a clear address."
+            },
+            {
+              "q": "What does the “Use my location” button do?",
+              "a": "It asks your browser for permission to know your current position and fills in the latitude and longitude. It only does so when you press it. If you refuse, you can type the address or the coordinates by hand. QR Gratis does not send your position to any server."
+            },
+            {
+              "q": "Which coordinate format does it accept?",
+              "a": "Decimal degrees, for example 40.4168 and -3.7038. Latitude goes from -90 to 90 and longitude from -180 to 180. If you type a decimal comma (40,4168), we convert it to a point."
+            },
+            {
+              "q": "Can I change the place after printing the code?",
+              "a": "No. It is a static code: the place stays inside the pattern. If you move or change the meeting point, create a new code."
+            },
+            {
+              "q": "Is my address sent to any server?",
+              "a": "No. The code is created on your device. It only contains a Google Maps link with the address or coordinates you typed, and anyone who scans the code will be able to see it."
+            }
+          ]
+        }
+      },
+      "email": {
+        "breadcrumb": "Email QR code",
+        "other": "Opens a ready-written email with your address.",
+        "h1": "Free email QR code",
+        "lead": "Create a QR code that opens a new email with your address, a subject and a message already typed. Ideal for asking for quotes or collecting enquiries. No sign-up and no expiry.",
+        "how": {
+          "title": "How to create an email QR code",
+          "steps": [
+            {
+              "title": "Enter the recipient email",
+              "text": "Enter the address that will receive the messages. We will check that it has a valid format."
+            },
+            {
+              "title": "Add a subject and a message (optional)",
+              "text": "You can leave a subject and a text already typed, for example “I would like a quote”. Whoever scans only has to review it and press send."
+            },
+            {
+              "title": "Generate, test and download",
+              "text": "Press “Generate QR” and scan it with your phone: it should open your email app with the message ready. Download the file as PNG, JPG, SVG or PDF."
+            }
+          ]
+        },
+        "about": {
+          "title": "How an email QR works",
+          "paragraphs": [
+            "The code stores a mailto link with the address, the subject and the message. When scanned, the phone opens the email app with a new message already prepared. Nothing is sent on its own: the person reviews it and presses send.",
+            "Spaces, accents and symbols such as & are encoded so they do not break the link. The code is created on your device and does not depend on any service. It is a static code: if you change your email address, you will have to create a new one."
+          ]
+        },
+        "useCases": {
+          "title": "Where to use an email QR",
+          "intro": "It is useful when you want people to write to you without typing your address.",
+          "items": [
+            {
+              "title": "Asking for a quote",
+              "text": "Put it on your van, on a flyer or on your card with the subject “Quote” already typed, to receive tidy messages."
+            },
+            {
+              "title": "Customer service",
+              "text": "Add it to the packaging or the receipt so the customer writes to you with their problem, with the subject already prepared."
+            },
+            {
+              "title": "Suggestions and feedback",
+              "text": "Place it in the shop with the subject “Suggestion”. It is a simple way to collect opinions in private."
+            },
+            {
+              "title": "Job offer",
+              "text": "Stick up a “We are hiring” sign with a prepared email so people send their résumé."
+            }
+          ]
+        },
+        "tips": {
+          "title": "Tips for an email QR",
+          "items": [
+            {
+              "title": "Use a clear subject",
+              "text": "A subject like “Kitchen remodel quote” helps you sort the messages you receive."
+            },
+            {
+              "title": "Keep the message short",
+              "text": "A couple of lines is enough. The more text, the denser the code and the harder it is to read."
+            },
+            {
+              "title": "Use an address you will keep",
+              "text": "If you change email, the printed code will keep pointing to the old one. A business email usually lasts longer than a personal one."
+            },
+            {
+              "title": "Test it with your email app",
+              "text": "Scan it with your phone and see how the message looks before printing. Each phone opens its default email app."
+            },
+            {
+              "title": "Remember the address is visible",
+              "text": "Whoever scans the code will see your address. Avoid putting a private email in a public place."
+            }
+          ]
+        },
+        "faq": {
+          "title": "Questions about the email QR",
+          "items": [
+            {
+              "q": "Is the email sent automatically when scanned?",
+              "a": "No. A new message opens with the address, the subject and the text prepared. The person reviews it and decides whether to send it."
+            },
+            {
+              "q": "Does it work on iPhone and Android?",
+              "a": "Yes. The camera opens the email app you have set as default. If none is set up, the phone may ask you to choose one."
+            },
+            {
+              "q": "Can I leave the subject and the message empty?",
+              "a": "Yes. Only the address is required. Empty fields are not included in the code."
+            },
+            {
+              "q": "What happens with accents, spaces and the & symbol?",
+              "a": "They are encoded so the link does not break. You can write accents or something like “Café & more” and the message will arrive as you wrote it."
+            },
+            {
+              "q": "Can I change the address after printing?",
+              "a": "No, it is a static code. If the address or the subject changes, create a new code."
+            },
+            {
+              "q": "Are my address and message sent to any server?",
+              "a": "No. The code is created on your device and does not go through any server of ours. Anyone who scans the code will see the address and the text you wrote."
             }
           ]
         }

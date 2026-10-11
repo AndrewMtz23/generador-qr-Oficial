@@ -14,8 +14,13 @@
       "url": "URL",
       "whatsapp": "WhatsApp",
       "wifi": "WiFi",
-      "text": "Texto"
-    }
+      "text": "Texto",
+      "resenasGoogle": "Avaliações do Google",
+      "vcard": "Cartão de contato",
+      "ubicacion": "Localização",
+      "email": "E-mail"
+    },
+    "moreTypes": "Mais tipos"
   },
   "main": {
     "sectionTitle": "Crie seu código QR"
@@ -51,7 +56,165 @@
     "colorHint": "Use o seletor de cor ou digite o código hexadecimal",
     "formatLabel": "Formato de saída",
     "generateButton": "Gerar QR",
-    "generating": "Gerando..."
+    "generating": "Gerando...",
+    "typeTabsLabel": "Tipo de QR Code",
+    "payloadPreview": "Pré-visualização do conteúdo",
+    "payloadPreviewEmpty": "Preencha os campos obrigatórios para ver aqui o que o código vai guardar.",
+    "testHint": "Teste o código com o seu celular antes de imprimir.",
+    "types": {
+      "resenas-google": {
+        "fields": {
+          "link": {
+            "label": "Link de avaliações do Google",
+            "placeholder": "https://g.page/r/...",
+            "hint": "Cole o link que o Perfil da Empresa no Google oferece para pedir avaliações."
+          }
+        },
+        "errors": {
+          "required": "Cole o link de avaliações do seu negócio.",
+          "invalid": "Digite um link completo que comece com https://."
+        },
+        "warnings": {
+          "notGoogle": "Este link não parece ser do Google. Você pode usá-lo mesmo assim, mas confira se é o correto."
+        },
+        "guide": {
+          "title": "Como conseguir o seu link",
+          "intro": "Os nomes dos botões podem variar conforme a sua conta, o seu país e as atualizações do Google.",
+          "steps": [
+            "Abra o Perfil da Empresa no Google com a conta que administra o seu negócio.",
+            "Procure a opção “Ler avaliações” ou “Pedir avaliações”.",
+            "Toque em “Compartilhar” e copie o link.",
+            "Cole no campo acima."
+          ]
+        }
+      },
+      "vcard": {
+        "groups": {
+          "address": "Endereço (opcional)"
+        },
+        "fields": {
+          "firstName": {
+            "label": "Nome",
+            "placeholder": "Ana"
+          },
+          "lastName": {
+            "label": "Sobrenome",
+            "placeholder": "Souza"
+          },
+          "company": {
+            "label": "Empresa",
+            "placeholder": "Padaria Espiga"
+          },
+          "jobTitle": {
+            "label": "Cargo",
+            "placeholder": "Gerente"
+          },
+          "mobile": {
+            "label": "Celular",
+            "placeholder": "+55 11 90000 0000"
+          },
+          "phoneWork": {
+            "label": "Telefone fixo ou comercial (opcional)",
+            "placeholder": "+55 11 3000 0000"
+          },
+          "email": {
+            "label": "E-mail",
+            "placeholder": "ana@exemplo.com"
+          },
+          "website": {
+            "label": "Site",
+            "placeholder": "https://exemplo.com"
+          },
+          "street": {
+            "label": "Rua e número",
+            "placeholder": "Rua Principal, 1"
+          },
+          "city": {
+            "label": "Cidade",
+            "placeholder": "São Paulo"
+          },
+          "postalCode": {
+            "label": "CEP",
+            "placeholder": "01000-000"
+          },
+          "country": {
+            "label": "País",
+            "placeholder": "Brasil"
+          },
+          "note": {
+            "label": "Observação (opcional)",
+            "placeholder": "Horário, serviços, como prefere ser contatado..."
+          }
+        },
+        "errors": {
+          "nameOrCompany": "Digite pelo menos o seu nome ou o da sua empresa.",
+          "invalidEmail": "Digite um e-mail válido, por exemplo nome@exemplo.com."
+        }
+      },
+      "ubicacion": {
+        "fields": {
+          "mode": {
+            "label": "Como você quer indicar o local",
+            "options": {
+              "address": "Endereço ou local",
+              "coords": "Latitude e longitude"
+            }
+          },
+          "address": {
+            "label": "Endereço ou nome do local",
+            "placeholder": "Praça da Sé, 1, São Paulo",
+            "hint": "Escreva como você o procuraria no Google Maps."
+          },
+          "lat": {
+            "label": "Latitude",
+            "placeholder": "-23.5505"
+          },
+          "lng": {
+            "label": "Longitude",
+            "placeholder": "-46.6333"
+          }
+        },
+        "errors": {
+          "addressRequired": "Digite um endereço ou o nome de um local.",
+          "latRequired": "Digite a latitude.",
+          "latInvalid": "A latitude deve ser um número, por exemplo -23.5505.",
+          "latRange": "A latitude deve estar entre -90 e 90.",
+          "lngRequired": "Digite a longitude.",
+          "lngInvalid": "A longitude deve ser um número, por exemplo -46.6333.",
+          "lngRange": "A longitude deve estar entre -180 e 180."
+        },
+        "geo": {
+          "button": "Usar minha localização",
+          "loading": "Buscando a sua localização...",
+          "hint": "O navegador pede permissão somente quando você toca no botão. O QR Gratis não envia a sua posição a nenhum servidor.",
+          "success": "Pronto: preenchemos a latitude e a longitude com a sua posição atual.",
+          "denied": "Não temos permissão para ver a sua localização. Você pode ativá-la nas configurações do navegador ou digitar o endereço à mão.",
+          "unavailable": "Não conseguimos obter a sua localização agora. Digite o endereço ou as coordenadas à mão.",
+          "timeout": "Demorou demais para encontrar a sua localização. Tente de novo ou digite os dados à mão.",
+          "unsupported": "O seu navegador não permite obter a localização. Digite o endereço à mão."
+        }
+      },
+      "email": {
+        "fields": {
+          "to": {
+            "label": "E-mail de destino",
+            "placeholder": "ola@meunegocio.com"
+          },
+          "subject": {
+            "label": "Assunto (opcional)",
+            "placeholder": "Quero pedir um orçamento"
+          },
+          "body": {
+            "label": "Mensagem (opcional)",
+            "placeholder": "Olá, gostaria de saber..."
+          }
+        },
+        "errors": {
+          "toRequired": "Digite o e-mail de destino.",
+          "toInvalid": "Digite um e-mail válido, por exemplo ola@exemplo.com."
+        }
+      }
+    }
   },
   "qr": {
     "title": "Código QR Gerado",
@@ -68,7 +231,7 @@
     "imageAlt": "Código QR gerado"
   },
   "footer": {
-    "description": "Ferramenta gratuita para gerar códigos QR de forma rápida e fácil. Sem registro, sem limites, sem complicações. Crie códigos QR personalizados para URLs, WhatsApp, WiFi e texto em segundos.",
+    "description": "Ferramenta gratuita para gerar QR Codes de forma rápida e simples. Sem cadastro, sem limites, sem complicações. Crie QR Codes para links, WhatsApp, WiFi, texto, avaliações do Google, cartões de contato, localizações e e-mail.",
     "features": "Características",
     "free": "100% Grátis",
     "instant": "Geração instantânea",
@@ -218,7 +381,7 @@
         "items": [
           {
             "q": "Que tipos de QR Code posso criar?",
-            "a": "Você pode criar códigos para [links (URL)](/generador-qr/url), [WhatsApp](/generador-qr/whatsapp), [redes WiFi](/generador-qr/wifi) e [texto](/generador-qr/texto). Em todos você pode escolher a cor e o tamanho, e adicionar um logo. Por enquanto não há outros tipos, como cartões de contato ou eventos de calendário."
+            "a": "Você pode criar códigos para [links (URL)](/generador-qr/url), [WhatsApp](/generador-qr/whatsapp), [redes WiFi](/generador-qr/wifi), [texto](/generador-qr/texto), [avaliações do Google](/generador-qr/resenas-google), [cartões de contato](/generador-qr/vcard), [localizações](/generador-qr/ubicacion) e [e-mail](/generador-qr/email). Em todos você pode escolher a cor e o tamanho, e adicionar um logo. Por enquanto não há outros tipos, como eventos de calendário."
           },
           {
             "q": "Custa alguma coisa ou há limite de códigos?",
@@ -297,7 +460,7 @@
     "features": {
       "title": "Características Principais",
       "item1": "Geração instantânea de códigos QR sem limites",
-      "item2": "Múltiplos tipos de QR: URLs, WhatsApp, WiFi e texto",
+      "item2": "Vários tipos de QR: links, WhatsApp, WiFi, texto, avaliações, contato, localização e e-mail",
       "item3": "Personalização completa: tamanho, cor e formato",
       "item4": "Suporte para logos personalizados",
       "item5": "Histórico local para acessar seus códigos anteriores"
@@ -354,7 +517,7 @@
       "lead": "Crie um QR Code para um link, WhatsApp, sua rede WiFi ou um texto em segundos. Sem cadastro, sem anúncios e sem data de validade.",
       "browserRequirements": "Requer um navegador com JavaScript e conexão com a internet para carregar a página",
       "featureList": [
-        "QR Codes para links, WhatsApp, WiFi e texto",
+        "QR Codes para links, WhatsApp, WiFi, texto, avaliações do Google, contato, localização e e-mail",
         "Download em PNG, JPG, SVG e PDF",
         "Cor, tamanho (de 200 a 2000 pixels) e logo personalizáveis",
         "Sem cadastro, sem anúncios e sem marca d'água",
@@ -366,7 +529,7 @@
         "steps": [
           {
             "title": "Escolha o tipo de código",
-            "text": "Selecione link (URL), WhatsApp, WiFi ou texto nas abas acima. Cada tipo mostra apenas os campos de que precisa."
+            "text": "Escolha nas abas acima: link (URL), WhatsApp, WiFi, texto, avaliações do Google, cartão de contato, localização ou e-mail. Cada tipo mostra só os campos de que precisa."
           },
           {
             "title": "Preencha os dados e personalize",
@@ -402,6 +565,26 @@
             "title": "Texto",
             "text": "Mostra uma nota, instruções ou um código de estoque.",
             "example": "Exemplo: o passo a passo colado em um aparelho."
+          },
+          "resenas-google": {
+            "title": "Avaliações do Google",
+            "text": "Leva seus clientes direto a escrever uma avaliação do seu negócio.",
+            "example": "Exemplo: um cartaz ao lado do caixa."
+          },
+          "vcard": {
+            "title": "Cartão de contato",
+            "text": "Quem escanear salva seu nome, telefone e e-mail na agenda.",
+            "example": "Exemplo: o verso do seu cartão de visita."
+          },
+          "ubicacion": {
+            "title": "Localização",
+            "text": "Abre um endereço ou umas coordenadas no Google Maps.",
+            "example": "Exemplo: como chegar à sua loja ou a um evento."
+          },
+          "email": {
+            "title": "E-mail",
+            "text": "Abre um e-mail novo com destinatário, assunto e mensagem já escritos.",
+            "example": "Exemplo: pedir um orçamento a partir de um folheto."
           }
         }
       },
@@ -940,6 +1123,430 @@
             {
               "q": "Vocês guardam o texto que eu escrevo?",
               "a": "Não. O código é criado no seu dispositivo e o texto não é enviado a nenhum servidor. O histórico desta ferramenta fica salvo somente no seu navegador."
+            }
+          ]
+        }
+      },
+      "resenas-google": {
+        "breadcrumb": "QR Code para avaliações do Google",
+        "other": "Leva seus clientes direto a deixar uma avaliação.",
+        "h1": "QR Code para avaliações do Google grátis",
+        "lead": "Crie um QR Code que leve seus clientes à página para deixar uma avaliação do seu negócio. Cole o link do seu perfil no Google, baixe o código e imprima. Sem cadastro e sem validade.",
+        "how": {
+          "title": "Como criar um QR Code para avaliações do Google",
+          "steps": [
+            {
+              "title": "Consiga o link de avaliações do seu negócio",
+              "text": "Abra o Perfil da Empresa no Google, procure a opção de ler ou pedir avaliações e copie o link de compartilhamento. Os nomes dos botões podem variar. Abaixo do formulário há um guia com os passos habituais."
+            },
+            {
+              "title": "Cole no formulário",
+              "text": "Cole o link completo, que começa com https://. Se ele não parecer do Google, avisaremos, mas você poderá usá-lo mesmo assim."
+            },
+            {
+              "title": "Gere, teste e baixe",
+              "text": "Clique em “Gerar QR” e escaneie com o celular: deve abrir a janela para escrever uma avaliação do seu negócio. Baixe o arquivo em PNG, JPG, SVG ou PDF e imprima."
+            }
+          ]
+        },
+        "about": {
+          "title": "Como funciona um QR de avaliações do Google",
+          "paragraphs": [
+            "Este código guarda um link da web: o que o Google oferece para compartilhar as avaliações do seu negócio. Ao escanear com a câmera, o celular o abre e o cliente chega à página onde pode escrever a sua opinião, sem procurar seu negócio no mapa.",
+            "O Google não publica um formato oficial para montar esse link a partir de um identificador do local, então não inventamos um: você cola o link que o seu perfil oferece. O código é criado no seu dispositivo e o link não é enviado a nenhum servidor. É um código estático: se o link mudar, será preciso criar um novo."
+          ]
+        },
+        "useCases": {
+          "title": "Onde usar um QR de avaliações",
+          "intro": "Funciona melhor quando o cliente está satisfeito e está com o celular à mão.",
+          "items": [
+            {
+              "title": "No balcão",
+              "text": "Coloque ao lado do caixa, em um suporte pequeno. Quem acabou de pagar pode deixar a opinião enquanto espera."
+            },
+            {
+              "title": "Na mesa",
+              "text": "Imprima em um display de mesa ou no cardápio do seu bar ou restaurante, para o cliente escrever a avaliação depois de comer."
+            },
+            {
+              "title": "No cupom ou na nota fiscal",
+              "text": "Adicione o código no fim do cupom, da nota ou do comprovante de entrega. A opinião chega quando o cliente revisa a compra."
+            },
+            {
+              "title": "Em um cartão ou folheto",
+              "text": "Inclua no seu cartão de visita, na embalagem do pedido ou em um folheto. É um lembrete discreto para quem levou seu produto."
+            }
+          ]
+        },
+        "tips": {
+          "title": "Dicas para um QR de avaliações",
+          "items": [
+            {
+              "title": "Não ofereça nada em troca da avaliação",
+              "text": "As políticas do Google não permitem oferecer incentivos em troca de avaliações, nem descontos nem presentes. Peça a opinião sem condições."
+            },
+            {
+              "title": "Peça no momento certo",
+              "text": "O melhor momento é logo depois de uma boa experiência: ao entregar o pedido, ao terminar o serviço ou na despedida. Uma frase simpática ao lado do código ajuda, por exemplo “Gostou? Conte para a gente”."
+            },
+            {
+              "title": "Teste o link antes de imprimir",
+              "text": "Escaneie o código com o celular e confira se abre a janela de avaliações do seu negócio e não a de outro local com nome parecido."
+            },
+            {
+              "title": "Facilite a leitura",
+              "text": "Imprima com pelo menos 3 x 3 cm, em cor escura sobre fundo claro, e coloque em um lugar com boa luz. Adicione uma frase curta que explique o que acontece ao escanear."
+            },
+            {
+              "title": "Se o link mudar, crie um código novo",
+              "text": "Um código estático não pode ser editado. Se um dia você mudar de link ou de perfil, o código impresso continuará levando ao antigo."
+            }
+          ]
+        },
+        "faq": {
+          "title": "Perguntas sobre o QR de avaliações do Google",
+          "items": [
+            {
+              "q": "Onde consigo o link de avaliações do meu negócio?",
+              "a": "No Perfil da Empresa no Google. Procure a opção de ler ou pedir avaliações e copie o link de compartilhamento. Os nomes das opções podem variar conforme a sua conta e o seu país. Abaixo do formulário há um guia com os passos habituais."
+            },
+            {
+              "q": "Posso fazer só com o nome do meu negócio?",
+              "a": "Não. O Google não documenta um formato oficial de link de avaliações que possa ser montado a partir do nome ou de um identificador do local, então não criamos links por conta própria. Você precisa colar o que o seu perfil oferece."
+            },
+            {
+              "q": "Funciona no iPhone e no Android?",
+              "a": "Sim. A câmera do iPhone e a da maioria dos celulares Android leem o código e abrem o link. Quem escaneia pode precisar entrar com a conta do Google para publicar a avaliação."
+            },
+            {
+              "q": "Posso dar um desconto ou um brinde a quem deixar uma avaliação?",
+              "a": "Não é recomendável. As políticas do Google não permitem oferecer incentivos em troca de avaliações. Você pode pedir a opinião e agradecer, mas sem condicioná-la a nenhum prêmio."
+            },
+            {
+              "q": "O que acontece se eu mudar o link ou o meu perfil?",
+              "a": "O código é estático: contém o link como você o colou e não pode ser editado depois de impresso. Se o link mudar, crie um código novo e troque o impresso."
+            },
+            {
+              "q": "O meu link é enviado a algum servidor?",
+              "a": "Não. O código é criado no seu dispositivo e o link não é enviado a nenhum servidor. O histórico fica salvo apenas no seu navegador e você pode apagá-lo quando quiser."
+            }
+          ]
+        }
+      },
+      "vcard": {
+        "breadcrumb": "QR Code de cartão de contato (vCard)",
+        "other": "Compartilhe seus dados de contato com um único toque.",
+        "h1": "QR Code de cartão de contato (vCard) grátis",
+        "lead": "Crie um QR Code com o seu nome, telefone, e-mail e site. Quem escanear poderá salvar você na agenda sem digitar nada. Ideal para cartões de visita. Sem cadastro e sem validade.",
+        "how": {
+          "title": "Como criar um QR Code de cartão de contato",
+          "steps": [
+            {
+              "title": "Preencha os seus dados",
+              "text": "Digite pelo menos o seu nome ou o da sua empresa. O resto é opcional: sobrenome, cargo, telefones, e-mail, site, endereço e uma observação. Os campos vazios não são incluídos."
+            },
+            {
+              "title": "Confira a pré-visualização do conteúdo",
+              "text": "Abaixo do formulário você vê o texto exato que o código vai guardar. Confira se os dados estão corretos."
+            },
+            {
+              "title": "Gere, teste e baixe",
+              "text": "Clique em “Gerar QR” e escaneie com o celular: ele deve oferecer salvar o contato. Baixe o arquivo em PNG, JPG, SVG ou PDF e coloque no seu cartão."
+            }
+          ]
+        },
+        "about": {
+          "title": "Como funciona um QR de cartão de contato",
+          "paragraphs": [
+            "Um vCard é um formato padrão para cartões de contato, o mesmo que as agendas do celular usam. O código guarda os seus dados como texto dentro do desenho (vCard 3.0, em UTF-8, então os acentos e o cedilha são mantidos). Ao escanear, o celular oferece criar um contato novo com esses dados.",
+            "Não é preciso internet para ler: os dados estão dentro do código, que é criado no seu dispositivo. Quanto mais dados você colocar, mais denso será o desenho e maior precisará ser a impressão para ler bem. É um código estático: se você mudar de telefone ou de cargo, será preciso criar um novo."
+          ]
+        },
+        "useCases": {
+          "title": "Onde usar um QR de cartão de contato",
+          "intro": "Serve em qualquer lugar onde alguém peça seus dados e você não queira ditá-los.",
+          "items": [
+            {
+              "title": "Cartão de visita",
+              "text": "Imprima o código no verso do seu cartão. Quem o receber salva você no celular em segundos, sem digitar o seu número."
+            },
+            {
+              "title": "Feira ou evento",
+              "text": "Coloque no crachá ou no painel do seu estande. Os contatos salvam você sem precisar anotar o seu e-mail em um papel."
+            },
+            {
+              "title": "Currículo",
+              "text": "Adicione o código ao seu currículo impresso para que quem o receber salve você no celular com a câmera, sem copiar seus dados."
+            },
+            {
+              "title": "Loja ou negócio local",
+              "text": "Cole na vitrine ou no balcão com o seu telefone, endereço e site, para que seus clientes salvem você na agenda."
+            }
+          ]
+        },
+        "tips": {
+          "title": "Dicas para um QR de cartão de contato",
+          "items": [
+            {
+              "title": "Coloque só o necessário",
+              "text": "Quanto mais campos, mais denso é o código. Com nome, telefone, e-mail e site costuma bastar, e ele é lido melhor, principalmente se for impresso pequeno."
+            },
+            {
+              "title": "Escreva o telefone com o código do país",
+              "text": "Por exemplo +55 11 90000 0000. Assim funciona também para quem salvar de outro país."
+            },
+            {
+              "title": "Teste com o seu celular antes de imprimir",
+              "text": "O iPhone e a maioria das câmeras Android oferecem salvar o contato. Alguns Android antigos podem omitir campos, por isso convém conferir."
+            },
+            {
+              "title": "Reserve espaço no cartão",
+              "text": "Deixe-o tão grande quanto o design permitir e mantenha uma margem branca ao redor. Um código apertado em um canto é lido pior."
+            },
+            {
+              "title": "Crie um novo se os seus dados mudarem",
+              "text": "Um código estático não pode ser editado. Se mudar de telefone, e-mail ou cargo, gere outro e troque os cartões."
+            }
+          ]
+        },
+        "faq": {
+          "title": "Perguntas sobre o QR de cartão de contato",
+          "items": [
+            {
+              "q": "O que é um vCard?",
+              "a": "É um formato padrão para cartões de contato. Os celulares o entendem e o transformam em um contato que você pode salvar na agenda."
+            },
+            {
+              "q": "Funciona no iPhone e no Android?",
+              "a": "Sim. O iPhone e a maioria das câmeras Android leem o código e oferecem salvar o contato. Em alguns Android antigos podem faltar campos ao salvar, por isso convém testar com o seu celular antes de imprimir."
+            },
+            {
+              "q": "Quais dados são obrigatórios?",
+              "a": "Só é preciso o nome ou a empresa. Todo o resto é opcional e, se ficar vazio, não é incluído no código."
+            },
+            {
+              "q": "Posso editar o cartão depois de imprimir?",
+              "a": "Não. É um código estático: os dados ficam dentro do desenho. Se mudarem, crie um código novo."
+            },
+            {
+              "q": "Os meus dados são enviados a algum servidor?",
+              "a": "Não. O código é criado no seu dispositivo e os seus dados de contato não são enviados a nenhum servidor. Quem escanear o código verá o que você escreveu, então inclua apenas o que quiser compartilhar."
+            },
+            {
+              "q": "Aceita acentos e cedilha?",
+              "a": "Sim. O conteúdo é guardado em UTF-8, então nomes como João ou Conceição aparecem corretamente. As vírgulas, os pontos e vírgulas e as quebras de linha são escritos no formato correto para não quebrar o cartão."
+            }
+          ]
+        }
+      },
+      "ubicacion": {
+        "breadcrumb": "QR Code de localização",
+        "other": "Abre o seu endereço no Google Maps com um toque.",
+        "h1": "QR Code de localização do Google Maps grátis",
+        "lead": "Crie um QR Code que abre um endereço ou umas coordenadas no Google Maps. Útil para lojas, eventos e pontos de encontro. Sem cadastro e sem validade.",
+        "how": {
+          "title": "Como criar um QR Code de localização",
+          "steps": [
+            {
+              "title": "Digite o endereço ou as coordenadas",
+              "text": "Digite o endereço ou o nome do local como você o procuraria no Google Maps. Se preferir coordenadas, mude para latitude e longitude ou toque em “Usar minha localização”."
+            },
+            {
+              "title": "Confira o link",
+              "text": "Abaixo do formulário você vê o link que o código vai guardar. É um link de busca do Google Maps."
+            },
+            {
+              "title": "Gere, teste e baixe",
+              "text": "Clique em “Gerar QR” e escaneie com o celular: deve abrir o local no mapa. Baixe o arquivo em PNG, JPG, SVG ou PDF."
+            }
+          ]
+        },
+        "about": {
+          "title": "Como funciona um QR de localização",
+          "paragraphs": [
+            "O código guarda um link do Google Maps com o seu endereço ou as suas coordenadas. Ao escanear, o celular abre o aplicativo do Google Maps se estiver instalado e, se não, abre o mapa no navegador. Também funciona no iPhone.",
+            "Escreva o endereço completo, com rua, número e cidade, para o Maps encontrar o lugar certo. O botão “Usar minha localização” só pede permissão quando você toca nele, e o QR Gratis não envia essa posição a nenhum servidor. É um código estático: se você se mudar, será preciso criar um novo."
+          ]
+        },
+        "useCases": {
+          "title": "Onde usar um QR de localização",
+          "intro": "Serve quando você quer que alguém chegue a um lugar sem precisar explicar o endereço.",
+          "items": [
+            {
+              "title": "Loja ou ponto comercial",
+              "text": "Coloque em um folheto, em um cartão ou em um cartaz para que seus clientes saibam como chegar até a sua porta."
+            },
+            {
+              "title": "Evento ou casamento",
+              "text": "Inclua o código no convite para que os convidados abram o local no mapa com um toque."
+            },
+            {
+              "title": "Ponto de encontro",
+              "text": "Marque um local de retirada, um estacionamento ou a entrada de uma obra com coordenadas, mesmo sem um endereço claro."
+            },
+            {
+              "title": "Aluguel por temporada",
+              "text": "Adicione ao guia da casa para que seus hóspedes encontrem a hospedagem, o estacionamento ou o lugar onde pegar as chaves."
+            }
+          ]
+        },
+        "tips": {
+          "title": "Dicas para um QR de localização",
+          "items": [
+            {
+              "title": "Use o endereço completo",
+              "text": "Inclua rua, número, cidade e, se necessário, país. Um endereço incompleto pode mostrar outro lugar."
+            },
+            {
+              "title": "Confira o mapa antes de imprimir",
+              "text": "Escaneie o código e veja se o marcador cai onde deve. Se não, tente com coordenadas, que são mais exatas."
+            },
+            {
+              "title": "Use coordenadas quando não há endereço",
+              "text": "Em um parque, uma praia ou um campo, use latitude e longitude. Você pode tocar em “Usar minha localização” estando no local."
+            },
+            {
+              "title": "Se você se mudar, crie um código novo",
+              "text": "O código é estático. Se mudar de endereço, o código impresso continuará levando ao anterior."
+            },
+            {
+              "title": "Adicione uma frase ao lado do código",
+              "text": "Escreva algo como “Como chegar” perto do código, para que quem o vir saiba o que acontece ao escanear."
+            }
+          ]
+        },
+        "faq": {
+          "title": "Perguntas sobre o QR de localização",
+          "items": [
+            {
+              "q": "Abre no Google Maps ou no navegador?",
+              "a": "Se o celular tiver o aplicativo do Google Maps, abre nele. Se não, o mapa abre no navegador. Também funciona no iPhone."
+            },
+            {
+              "q": "Qual a diferença entre endereço e coordenadas?",
+              "a": "O endereço é mais fácil de digitar, mas o Maps pode interpretá-lo de outra forma. As coordenadas (latitude e longitude) apontam para um ponto exato e são úteis para locais sem endereço claro."
+            },
+            {
+              "q": "O que faz o botão “Usar minha localização”?",
+              "a": "Pede permissão ao seu navegador para saber a sua posição atual e preenche a latitude e a longitude. Só faz isso quando você toca nele. Se recusar, você pode digitar o endereço ou as coordenadas à mão. O QR Gratis não envia a sua posição a nenhum servidor."
+            },
+            {
+              "q": "Qual formato de coordenadas é aceito?",
+              "a": "Graus decimais, por exemplo -23.5505 e -46.6333. A latitude vai de -90 a 90 e a longitude de -180 a 180. Se você digitar a vírgula decimal (-23,5505), nós a convertemos em ponto."
+            },
+            {
+              "q": "Posso mudar o local depois de imprimir o código?",
+              "a": "Não. É um código estático: o local fica dentro do desenho. Se você se mudar ou mudar o ponto de encontro, crie um código novo."
+            },
+            {
+              "q": "O meu endereço é enviado a algum servidor?",
+              "a": "Não. O código é criado no seu dispositivo. Ele só contém um link do Google Maps com o endereço ou as coordenadas que você digitou, e qualquer pessoa que escanear o código poderá vê-lo."
+            }
+          ]
+        }
+      },
+      "email": {
+        "breadcrumb": "QR Code de e-mail",
+        "other": "Abre um e-mail já escrito com o seu endereço.",
+        "h1": "QR Code de e-mail grátis",
+        "lead": "Crie um QR Code que abre um e-mail novo com o seu endereço, um assunto e uma mensagem já escritos. Ideal para pedir orçamentos ou receber consultas. Sem cadastro e sem validade.",
+        "how": {
+          "title": "Como criar um QR Code de e-mail",
+          "steps": [
+            {
+              "title": "Digite o e-mail de destino",
+              "text": "Informe o endereço que vai receber as mensagens. Vamos conferir se o formato é válido."
+            },
+            {
+              "title": "Adicione assunto e mensagem (opcional)",
+              "text": "Você pode deixar um assunto e um texto já escritos, por exemplo “Quero um orçamento”. Quem escanear só precisará revisar e enviar."
+            },
+            {
+              "title": "Gere, teste e baixe",
+              "text": "Clique em “Gerar QR” e escaneie com o celular: deve abrir o seu aplicativo de e-mail com a mensagem pronta. Baixe o arquivo em PNG, JPG, SVG ou PDF."
+            }
+          ]
+        },
+        "about": {
+          "title": "Como funciona um QR de e-mail",
+          "paragraphs": [
+            "O código guarda um link do tipo mailto com o endereço, o assunto e a mensagem. Ao escanear, o celular abre o aplicativo de e-mail com uma mensagem nova já preparada. Nada é enviado sozinho: a pessoa revisa e toca em enviar.",
+            "Os espaços, os acentos e símbolos como & são codificados para não quebrar o link. O código é criado no seu dispositivo e não depende de nenhum serviço. É um código estático: se você mudar de endereço de e-mail, será preciso criar um novo."
+          ]
+        },
+        "useCases": {
+          "title": "Onde usar um QR de e-mail",
+          "intro": "É útil quando você quer que escrevam para você sem precisar digitar o seu endereço.",
+          "items": [
+            {
+              "title": "Pedir um orçamento",
+              "text": "Coloque na sua van, em um folheto ou no seu cartão com o assunto “Orçamento” já escrito, para receber mensagens organizadas."
+            },
+            {
+              "title": "Atendimento ao cliente",
+              "text": "Adicione à embalagem ou ao cupom para que o cliente escreva com o seu problema, com o assunto já preparado."
+            },
+            {
+              "title": "Sugestões e opiniões",
+              "text": "Coloque no estabelecimento com o assunto “Sugestão”. É uma forma simples de receber opiniões em particular."
+            },
+            {
+              "title": "Vaga de emprego",
+              "text": "Cole um cartaz de “Contratamos” com um e-mail preparado para que enviem o currículo."
+            }
+          ]
+        },
+        "tips": {
+          "title": "Dicas para um QR de e-mail",
+          "items": [
+            {
+              "title": "Use um assunto claro",
+              "text": "Um assunto como “Orçamento reforma da cozinha” ajuda a organizar as mensagens que chegarem."
+            },
+            {
+              "title": "Deixe uma mensagem curta",
+              "text": "Duas linhas bastam. Quanto mais texto, mais denso será o código e mais difícil de ler."
+            },
+            {
+              "title": "Use um endereço que você vá manter",
+              "text": "Se mudar de e-mail, o código impresso continuará apontando para o anterior. Um e-mail do negócio costuma durar mais que um pessoal."
+            },
+            {
+              "title": "Teste com o seu aplicativo de e-mail",
+              "text": "Escaneie com o seu celular e veja como fica a mensagem antes de imprimir. Cada celular abre o seu aplicativo de e-mail padrão."
+            },
+            {
+              "title": "Lembre-se de que o endereço fica visível",
+              "text": "Quem escanear o código verá o seu endereço. Evite colocar um e-mail privado em um lugar público."
+            }
+          ]
+        },
+        "faq": {
+          "title": "Perguntas sobre o QR de e-mail",
+          "items": [
+            {
+              "q": "O e-mail é enviado automaticamente ao escanear?",
+              "a": "Não. Abre-se uma mensagem nova com o endereço, o assunto e o texto preparados. A pessoa revisa e decide se envia."
+            },
+            {
+              "q": "Funciona no iPhone e no Android?",
+              "a": "Sim. A câmera abre o aplicativo de e-mail que você definiu como padrão. Se não houver nenhum configurado, o celular pode pedir que você escolha um."
+            },
+            {
+              "q": "Posso deixar o assunto e a mensagem vazios?",
+              "a": "Sim. Só o endereço é obrigatório. Os campos vazios não são incluídos no código."
+            },
+            {
+              "q": "O que acontece com os acentos, os espaços e o símbolo &?",
+              "a": "São codificados para o link não quebrar. Você pode escrever acentos ou algo como “Café & mais” e a mensagem chegará como você escreveu."
+            },
+            {
+              "q": "Posso mudar o endereço depois de imprimir?",
+              "a": "Não, é um código estático. Se o endereço ou o assunto mudar, crie um código novo."
+            },
+            {
+              "q": "O meu endereço e a minha mensagem são enviados a algum servidor?",
+              "a": "Não. O código é criado no seu dispositivo e não passa por nenhum servidor nosso. Quem escanear o código verá o endereço e o texto que você escreveu."
             }
           ]
         }

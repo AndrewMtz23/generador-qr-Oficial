@@ -1,15 +1,15 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { ArrowRight, QrCode } from "lucide-react";
-import { GENERATOR_ROUTE_TYPES, type GeneratorRouteType } from "../../config/seo";
-import { TYPE_ICONS } from "../../config/landing";
+import { getRelatedTypes } from "../../config/qrTypes";
+import type { GeneratorRouteType } from "../../config/seo";
 import { SectionShell } from "./SectionShell";
 
 interface OtherTypesProps {
   current: GeneratorRouteType;
 }
 
-/** Type pages: links to the other three QR type pages. */
+/** Type pages: links to up to six related QR type pages (curated first, then registry order). */
 export const OtherTypes = ({ current }: OtherTypesProps) => {
   const { t } = useTranslation();
 
@@ -22,8 +22,7 @@ export const OtherTypes = ({ current }: OtherTypesProps) => {
       intro={t("landing.common.otherIntro")}
     >
       <ul className="grid gap-4 md:grid-cols-3">
-        {GENERATOR_ROUTE_TYPES.filter((type) => type !== current).map((type) => {
-          const Icon = TYPE_ICONS[type];
+        {getRelatedTypes(current).map(({ slug: type, icon: Icon }) => {
           return (
             <li key={type}>
               <Link

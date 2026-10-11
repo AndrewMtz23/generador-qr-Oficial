@@ -4,14 +4,13 @@ import { StaticRouter } from "react-router-dom";
 import { HelmetProvider, type HelmetServerState } from "react-helmet-async";
 import App from "./App";
 import i18n from "./i18n/config";
+import { QR_TYPE_LIST } from "./config/qrTypes";
 
 /** Public routes that are prerendered to static HTML at build time. `/history` is client-only. */
 export const PRERENDER_ROUTES: string[] = [
   "/",
-  "/generador-qr/url",
-  "/generador-qr/whatsapp",
-  "/generador-qr/wifi",
-  "/generador-qr/texto",
+  // One page per registry type (config/qrTypes.ts): a new type is prerendered and added to the sitemap automatically.
+  ...QR_TYPE_LIST.map((entry) => `/generador-qr/${entry.slug}`),
   "/faq",
   "/about",
   "/donaciones",

@@ -21,7 +21,7 @@ import { TypeUseCases } from "../components/sections/TypeUseCases";
 import { TypeTips } from "../components/sections/TypeTips";
 import { OtherTypes } from "../components/sections/OtherTypes";
 import { useQRGenerator } from "../hooks/useQRGenerator";
-import { TYPE_ICONS, USE_CASE_ICONS } from "../config/landing";
+import { QR_TYPE_LIST, getQrTypeBySlug } from "../config/qrTypes";
 import {
   SITE_URL,
   PROJECT_NAME,
@@ -58,6 +58,7 @@ export function GeneratorPage({ variant = "type" }: GeneratorPageProps) {
   const resolvedRouteType: GeneratorRouteType =
     !isHome && isValidRoute ? (routeType as GeneratorRouteType) : "url";
   const internalType = ROUTE_TO_TYPE[resolvedRouteType];
+  const typeDefinition = getQrTypeBySlug(resolvedRouteType) ?? QR_TYPE_LIST[0];
 
   const qrGenerator = useQRGenerator();
 
@@ -170,7 +171,7 @@ export function GeneratorPage({ variant = "type" }: GeneratorPageProps) {
           <TextSection
             id="about-type"
             title={t(`${contentKey}.about.title`)}
-            icon={TYPE_ICONS[resolvedRouteType]}
+            icon={typeDefinition.icon}
             paragraphs={getList<string>(t, `${contentKey}.about.paragraphs`)}
             tone="muted"
           />
@@ -178,7 +179,7 @@ export function GeneratorPage({ variant = "type" }: GeneratorPageProps) {
             title={t(`${contentKey}.useCases.title`)}
             intro={t(`${contentKey}.useCases.intro`)}
             items={getList<TextItem>(t, `${contentKey}.useCases.items`)}
-            icons={USE_CASE_ICONS[resolvedRouteType]}
+            icons={typeDefinition.useCaseIcons}
           />
           <TypeTips title={t(`${contentKey}.tips.title`)} items={getList<TextItem>(t, `${contentKey}.tips.items`)} />
           <SectionShell id="faq" title={t(`${contentKey}.faq.title`)} icon={HelpCircle}>

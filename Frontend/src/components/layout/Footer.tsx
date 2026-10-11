@@ -2,13 +2,9 @@ import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { QrCode, Check, Github, Linkedin, Facebook } from "lucide-react";
 import { BRAND_NAME } from "../../constants";
+import { QR_TYPE_LIST } from "../../config/qrTypes";
 
-const GENERATOR_LINKS = [
-  { to: "/generador-qr/url", labelKey: "header.nav.url" },
-  { to: "/generador-qr/whatsapp", labelKey: "header.nav.whatsapp" },
-  { to: "/generador-qr/wifi", labelKey: "header.nav.wifi" },
-  { to: "/generador-qr/texto", labelKey: "header.nav.text" },
-] as const;
+const GENERATOR_LINKS = QR_TYPE_LIST.map((entry) => ({ to: `/generador-qr/${entry.slug}`, labelKey: entry.navKey }));
 
 const PROJECT_LINKS = [
   { to: "/faq", labelKey: "footer.faq" },

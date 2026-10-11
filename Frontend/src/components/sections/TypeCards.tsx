@@ -1,8 +1,7 @@
 import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { ArrowRight, QrCode } from "lucide-react";
-import { GENERATOR_ROUTE_TYPES } from "../../config/seo";
-import { TYPE_ICONS } from "../../config/landing";
+import { QR_TYPE_LIST } from "../../config/qrTypes";
 import { SectionShell } from "./SectionShell";
 
 /** Home: one card per QR type, each linking to its own landing page. */
@@ -18,8 +17,7 @@ export const TypeCards = () => {
       intro={t("landing.home.types.intro")}
     >
       <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-        {GENERATOR_ROUTE_TYPES.map((type) => {
-          const Icon = TYPE_ICONS[type];
+        {QR_TYPE_LIST.map(({ slug: type, icon: Icon }) => {
           return (
             <li key={type}>
               <Link

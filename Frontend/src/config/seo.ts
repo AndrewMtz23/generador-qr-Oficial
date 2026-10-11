@@ -1,3 +1,5 @@
+import { QR_TYPES, QR_TYPE_LIST, type QRType, type QrSlug } from "./qrTypes";
+
 /** Base URL del sitio (sin barra final). Usado para canonical y sitemap. */
 export const SITE_URL = "https://www.qrgratis.es";
 
@@ -19,54 +21,33 @@ export const OG_LOCALES: Record<string, string> = {
   pt: "pt_BR",
 };
 
-export type GeneratorRouteType = "url" | "whatsapp" | "wifi" | "texto";
+/** URL segment of a generator page. Derived from the registry in `qrTypes.ts`. */
+export type GeneratorRouteType = QrSlug;
 
-export const GENERATOR_ROUTE_TYPES: GeneratorRouteType[] = ["url", "whatsapp", "wifi", "texto"];
+export const GENERATOR_ROUTE_TYPES: GeneratorRouteType[] = QR_TYPES.map((entry) => entry.slug);
 
 /** Mapeo ruta URL → tipo interno del formulario (QRType). */
-export const ROUTE_TO_TYPE: Record<GeneratorRouteType, "url" | "whatsapp" | "wifi" | "text"> = {
-  url: "url",
-  whatsapp: "whatsapp",
-  wifi: "wifi",
-  texto: "text",
-};
+export const ROUTE_TO_TYPE = Object.fromEntries(QR_TYPE_LIST.map((entry) => [entry.slug, entry.id])) as Record<
+  GeneratorRouteType,
+  QRType
+>;
 
 /** Mapeo tipo interno (QRType) → segmento de ruta. */
-export const TYPE_TO_ROUTE: Record<"url" | "whatsapp" | "wifi" | "text", GeneratorRouteType> = {
-  url: "url",
-  whatsapp: "whatsapp",
-  wifi: "wifi",
-  text: "texto",
-};
+export const TYPE_TO_ROUTE = Object.fromEntries(QR_TYPE_LIST.map((entry) => [entry.id, entry.slug])) as Record<
+  QRType,
+  GeneratorRouteType
+>;
 
 export interface PageMeta {
   title: string;
   description: string;
 }
 
-/** Títulos de hasta 60 caracteres (palabra clave primero) y descripciones de 140 a 160. */
-export const GENERATOR_ROUTE_META: Record<GeneratorRouteType, PageMeta> = {
-  url: {
-    title: `Generador de código QR para URL gratis | ${PROJECT_NAME}`,
-    description:
-      "Convierte cualquier enlace en un código QR gratis. Elige color, tamaño y logo, y descárgalo en PNG, JPG, SVG o PDF. Sin registro y sin caducidad.",
-  },
-  whatsapp: {
-    title: `Código QR de WhatsApp gratis con mensaje | ${PROJECT_NAME}`,
-    description:
-      "Crea un código QR que abre un chat de WhatsApp con tu número y un mensaje ya escrito. Gratis, sin registro y sin caducidad. Descárgalo en segundos.",
-  },
-  wifi: {
-    title: `Código QR para WiFi gratis: comparte tu red | ${PROJECT_NAME}`,
-    description:
-      "Crea un código QR para que tus invitados o clientes se conecten a tu WiFi sin escribir la contraseña. Gratis, sin registro, sin anuncios y sin caducidad.",
-  },
-  texto: {
-    title: `Código QR de texto gratis | ${PROJECT_NAME}`,
-    description:
-      "Convierte un texto en un código QR gratis: notas, instrucciones o códigos de inventario. Sin registro, sin anuncios y sin caducidad. PNG, JPG, SVG o PDF.",
-  },
-};
+/** Títulos de hasta 60 caracteres (palabra clave primero) y descripciones de 140 a 160. Viven en el registro. */
+export const GENERATOR_ROUTE_META = Object.fromEntries(QR_TYPE_LIST.map((entry) => [entry.slug, entry.meta])) as Record<
+  GeneratorRouteType,
+  PageMeta
+>;
 
 /** SEO for the home page ("/"). */
 export const HOME_META: PageMeta = {

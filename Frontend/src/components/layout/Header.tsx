@@ -5,21 +5,19 @@ import { QrCode, User, Moon, Sun, History, Menu, X } from "lucide-react";
 import { useDarkMode } from "../../hooks/useDarkMode";
 import { useLanguage } from "../../hooks/useLanguage";
 import { BRAND_NAME, SUPPORTED_LANGUAGES } from "../../constants";
+import { MAIN_NAV_TYPES } from "../../config/qrTypes";
+import { MoreTypesMenu } from "./MoreTypesMenu";
 
 interface HeaderProps {
   onLoginClick: () => void;
 }
 
-const NAV_ITEMS = [
-  { to: "/generador-qr/url", labelKey: "header.nav.url" },
-  { to: "/generador-qr/whatsapp", labelKey: "header.nav.whatsapp" },
-  { to: "/generador-qr/wifi", labelKey: "header.nav.wifi" },
-  { to: "/generador-qr/texto", labelKey: "header.nav.text" },
-  { to: "/faq", labelKey: "header.faq" },
-] as const;
+/** Main types come from the registry; the rest live in the "Más tipos" menu. */
+const TYPE_NAV_ITEMS = MAIN_NAV_TYPES.map((entry) => ({ to: `/generador-qr/${entry.slug}`, labelKey: entry.navKey }));
+const FAQ_NAV_ITEM = { to: "/faq", labelKey: "header.faq" } as const;
 
 const desktopLinkClass = ({ isActive }: { isActive: boolean }) =>
-  `inline-flex min-h-[40px] items-center rounded-lg px-3 text-sm font-medium transition-colors duration-200 ${
+  `inline-flex min-h-[40px] items-center rounded-lg px-2.5 text-sm font-medium xl:px-3 transition-colors duration-200 ${
     isActive
       ? "bg-teal-50 text-teal-800 dark:bg-teal-950 dark:text-teal-200"
       : "text-slate-700 hover:bg-slate-100 hover:text-slate-900 dark:text-slate-300 dark:hover:bg-slate-800 dark:hover:text-white"
@@ -99,7 +97,7 @@ export const Header = ({ onLoginClick }: HeaderProps) => {
   return (
     <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur dark:border-slate-800 dark:bg-slate-900/95">
       <div className="container-page">
-        <div className="flex h-16 items-center justify-between gap-4">
+        <div className="flex h-16 items-center justify-between gap-2 xl:gap-4">
           {/* Logo */}
           <Link
             to="/"
@@ -115,11 +113,15 @@ export const Header = ({ onLoginClick }: HeaderProps) => {
 
           {/* Desktop navigation */}
           <nav aria-label={t("header.mainNav")} className="hidden items-center gap-1 lg:flex">
-            {NAV_ITEMS.map((item) => (
+            {TYPE_NAV_ITEMS.map((item) => (
               <NavLink key={item.to} to={item.to} className={desktopLinkClass}>
                 {t(item.labelKey)}
               </NavLink>
             ))}
+            <MoreTypesMenu variant="desktop" />
+            <NavLink to={FAQ_NAV_ITEM.to} className={desktopLinkClass}>
+              {t(FAQ_NAV_ITEM.labelKey)}
+            </NavLink>
           </nav>
 
           {/* Desktop actions */}
@@ -180,11 +182,15 @@ export const Header = ({ onLoginClick }: HeaderProps) => {
         <div id="mobile-nav" className="border-t border-slate-200 bg-white lg:hidden dark:border-slate-800 dark:bg-slate-900">
           <div className="container-page space-y-4 py-4">
             <nav aria-label={t("header.mainNav")} className="flex flex-col gap-1">
-              {NAV_ITEMS.map((item) => (
+              {TYPE_NAV_ITEMS.map((item) => (
                 <NavLink key={item.to} to={item.to} className={mobileLinkClass}>
                   {t(item.labelKey)}
                 </NavLink>
               ))}
+              <MoreTypesMenu variant="mobile" />
+              <NavLink to={FAQ_NAV_ITEM.to} className={mobileLinkClass}>
+                {t(FAQ_NAV_ITEM.labelKey)}
+              </NavLink>
               <NavLink to="/history" className={mobileLinkClass}>
                 <History className="mr-2 h-5 w-5" aria-hidden="true" />
                 {t("header.history")}

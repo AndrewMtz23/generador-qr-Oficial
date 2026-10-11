@@ -33,9 +33,9 @@ Bizum QR (no public payload standard), TikTok/PayPal types, Excel upload, dynami
 `npm run build` (route count grows per phase), `npx tsc -p tsconfig.app.json --noEmit` 0 errors, `npx eslint .` 0 errors, browser check of new pages (generate + download where applicable), scan-test generated codes via decoder.
 
 ## Tasks
-- [ ] F0a — MIT LICENSE + README license section. Route: inline.
-- [ ] F0b — Client-side QR engine + exports + privacy copy. Route: delegated writer.
-- [ ] F1a — Types: resenas-google, vcard, ubicacion, email (+ "Más tipos" nav, routing scaffolding). Route: delegated writer.
+- [x] F0a — MIT LICENSE + README license section. Route: inline. Evidence: e04ca1c.
+- [x] F0b — Client-side QR engine + exports + privacy copy. Route: delegated writer. Evidence: db031b5; parent re-ran build (11 pages), tsc 0, eslint 0 errors, no server refs; initial JS 285.9 → 152.2 kB gzip (qrcode 9.7 kB and jsPDF lazy chunks); writer verified matrix == QRCode.create for 5 inputs incl. UTF-8, quiet zone 4, PNG module sampling 0 mismatches, all 4 download formats. Real scanner test pending → F2 (zxing). Logo backing capped at 25% of side (backend used ~29%).
+- [ ] F1a — Types: resenas-google, vcard, ubicacion, email (+ "Más tipos" nav, routing scaffolding). Route: delegated writer. STOPPED by user request 2026-10-09 during the writer's final browser check; changes left uncommitted (17 files, +2033/−171; new `config/qrTypes.ts` registry, `utils/qrPayloads.ts`, `TypeFields.tsx`, `MoreTypesMenu.tsx`). Parent check after stop: build 15 pages, tsc 0, eslint 0 errors. Not reviewed: payload sanity, browser pass, content read. Committed as WIP on user request 2026-10-11 (before review) and pushed; review + finish pending.
 - [ ] F1b — Types: telefono, sms, instagram, evento. Route: delegated writer.
 - [ ] F2 — Readability checker + /verificador-qr. Route: delegated writer.
 - [ ] F3 — Printable templates. Route: delegated writer.
@@ -43,7 +43,8 @@ Bizum QR (no public payload standard), TikTok/PayPal types, Excel upload, dynami
 - [ ] F5 — pnpm-lock sync, README/feature update, final verification. Route: inline.
 
 ## Progress / evidence
+- 2026-10-11: pnpm-lock synced (qrcode) via `CI=true npx pnpm@9 install --lockfile-only` — it still wiped node_modules; restored with `npm install`. Use a separate copy/dir for future pnpm syncs.
 - 2026-10-09: branch created from feat/seo-redesign; node_modules re-verified with npm after an aborted pnpm frozen check (build OK).
 
 ## Next step
-F0a, then F0b.
+Review F1a (payloads, browser pass, content), then F1b → F5.

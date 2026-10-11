@@ -7,7 +7,7 @@ interface TypeUseCasesProps {
   title: string;
   intro?: string;
   items: TextItem[];
-  icons: LucideIcon[];
+  icons: readonly LucideIcon[];
 }
 
 /** Type pages: 3 to 4 concrete use cases for one QR type. */

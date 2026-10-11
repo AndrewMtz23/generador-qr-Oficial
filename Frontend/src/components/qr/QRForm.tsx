@@ -8,6 +8,7 @@ import {
   EyeOff,
   FileText,
   Loader2,
+  Smartphone,
 } from "lucide-react";
 import {
   PhoneInput,
@@ -15,6 +16,8 @@ import {
   parseCountry,
 } from "react-international-phone";
 import { QR_CONFIG } from "../../constants";
+import { getQrTypeById } from "../../config/qrTypes";
+import { TypeFields } from "./TypeFields";
 import type { UseQRGeneratorReturn } from "../../hooks/useQRGenerator";
 import type { WiFiSecurity } from "../../types";
 
@@ -79,6 +82,9 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
     setWifiHidden,
     textContent,
     setTextContent,
+    fieldValues,
+    setFieldValue,
+    fieldErrors,
     type,
     qrSize,
     setQrSize,
@@ -94,10 +100,21 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
     generateQRCode,
   } = qrGenerator;
 
+  const typeDefinition = getQrTypeById(type);
+
   return (
     <div className="space-y-5">
       {/* Fields by QR type */}
-      {type === "text" ? (
+      {typeDefinition.form ? (
+        <TypeFields
+          slug={typeDefinition.slug}
+          typeId={typeDefinition.id}
+          form={typeDefinition.form}
+          values={fieldValues[typeDefinition.id] ?? {}}
+          errors={fieldErrors}
+          setFieldValue={setFieldValue}
+        />
+      ) : type === "text" ? (
         <div>
           <label htmlFor="qr-text" className="field-label">
             {t("form.textLabel")}
@@ -423,6 +440,10 @@ export const QRForm = ({ qrGenerator }: QRFormProps) => {
         {loading && <Loader2 className="h-5 w-5 animate-spin" aria-hidden="true" />}
         {loading ? t("form.generating") : t("form.generateButton")}
       </button>
+      <p className="field-hint -mt-2 flex items-start gap-2">
+        <Smartphone className="mt-0.5 h-4 w-4 shrink-0 text-teal-700 dark:text-teal-400" aria-hidden="true" />
+        <span>{t("form.testHint")}</span>
+      </p>
     </div>
   );
 };
